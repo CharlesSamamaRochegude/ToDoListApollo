@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "ToDoListApollo"
+  "defaultProject": "ToDoListApollo",
+  "cli": {
+    "analytics": "184f5f40-64a7-4cd3-ad7f-6bf4f35457e7"
+  }
 }
