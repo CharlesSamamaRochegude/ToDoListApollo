@@ -11,5 +11,9 @@ export class ListeService {
     const lists = of(LISTS);
     return lists;
   }
+  getHeroe(id: number): Observable<List> {
+    const list = LISTS.find(l => l.id === id)!;
+    return of(list);
+  }
   constructor() { }
 }

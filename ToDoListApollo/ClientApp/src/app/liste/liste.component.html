@@ -1,9 +1,9 @@
 <h2>My Lists </h2>
 <ul class="heroes">
   <li *ngFor="let list of lists">
-    <button type="button">
+    <a routerLink="/details/{{list.id}}">
       <span class="badge">{{list.id}}</span>
       <span class="name">{{list.name}}</span>
-    </button>
-  </li>
+    </a>
+</li>
 </ul>
