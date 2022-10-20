@@ -1,9 +1,9 @@
-<h2>My Lists</h2>
+<h2>My Lists </h2>
 <ul class="liste">
-  <li *ngFor="let todolist of liste">
-    <button type="button">
-      <span class="badge">{{todolist.id}}</span>
-      <span class="name">{{todolist.name}}</span>
-    </button>
-  </li>
+  <li *ngFor="let todoliste of liste">
+    <a routerLink="/details/{{todoliste.id}}">
+      <span class="badge">{{todoliste.id}}</span>
+      <span class="name">{{todoliste.name}}</span>
+    </a>
+</li>
 </ul>
