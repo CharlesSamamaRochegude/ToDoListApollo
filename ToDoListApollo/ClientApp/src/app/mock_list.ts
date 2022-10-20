@@ -1,6 +1,7 @@
-import { List } from './list';
+import { Todoliste } from './list';
 
-export const LISTS: List[] = [
+// Définition de la liste de test des todolistes
+export const LISTE: Todoliste[] = [
   { id: 12, name: 'manger' },
   { id: 13, name: 'boire' },
   { id: 14, name: 'develloper' },
