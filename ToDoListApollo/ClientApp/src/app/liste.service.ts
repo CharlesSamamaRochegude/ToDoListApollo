@@ -10,7 +10,7 @@ import { LISTE } from './mock_list';
 })
 
 export class ListeService {
-  getListes(): Observable<Todoliste[]> {
+  getListe(): Observable<Todoliste[]> {
     const liste = of(LISTE);
     return liste;
   }

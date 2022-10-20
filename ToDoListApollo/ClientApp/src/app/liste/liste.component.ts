@@ -15,13 +15,11 @@ export class ListeComponent implements OnInit {
   liste: Todoliste[] = [];
 
   constructor(private listeService: ListeService) { }
-
   ngOnInit(): void {
-    this.getLists();
+    this.getListe();
   }
-
   // Obtention de la liste des todolistes depuis le service listeService
   getListe(): void {
-    this.listeService.getListes().subscribe(liste => this.liste = liste);
+    this.listeService.getListe().subscribe(liste => this.liste = liste);
   }
 }

@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+// Import de nos propres fichiers
 import { ListeService } from '../liste.service';
 import { Todoliste } from '../list';
 
@@ -10,18 +11,18 @@ import { Todoliste } from '../list';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit {
   liste: Todoliste | undefined;
-  constructor(
-    private route: ActivatedRoute,
-    private ListeService: ListeService,
-    private location: Location
-  ) { }
 
+  constructor(private route: ActivatedRoute,
+              private ListeService: ListeService,
+              private location: Location
+            ) { }
   ngOnInit(): void {
     this.getToDoListe();
   }
-
+  // Obtention de la todoliste voulue
   getToDoListe(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.ListeService.getTodoliste(id).subscribe(liste => this.liste = liste);
