@@ -12,11 +12,8 @@ import { ListeService } from '../liste.service';
 })
 
 export class ListeComponent implements OnInit {
-  lists: List[] = [];
+  liste: Todoliste[] = [];
 
-  getLists(): void {
-    this.listeService.getListes().subscribe(lists => this.lists = lists);
-  }
 
   constructor(private listeService: ListeService) { }
 
@@ -26,6 +23,6 @@ export class ListeComponent implements OnInit {
 
   // Obtention de la liste des todolistes depuis le service listeService
   getListe(): void {
-    this.listeService.getHeroes().subscribe(liste => this.liste = liste);
+    this.listeService.getListes().subscribe(liste => this.liste = liste);
   }
 }
