@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from '../list';
-import { LISTS } from '../mock_list';
+import { List } from '../list'
+import { ListeService } from '../liste.service';
 
 
 @Component({
@@ -10,11 +10,16 @@ import { LISTS } from '../mock_list';
 })
 
 export class ListeComponent implements OnInit {
-  lists = LISTS;
-  
-  constructor() { }
+  lists: List[] = [];
+
+  getLists(): void {
+    this.listeService.getHeroes().subscribe(lists => this.lists = lists);
+  }
+
+  constructor(private listeService: ListeService) { }
 
   ngOnInit(): void {
+    this.getLists();
   }
 
 }
