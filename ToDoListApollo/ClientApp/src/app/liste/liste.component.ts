@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LISTS } from '../mock_list';
 
 @Component({
   selector: 'app-liste',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liste.component.css']
 })
 export class ListeComponent implements OnInit {
-
+  lists = LISTS;
   constructor() { }
 
   ngOnInit(): void {
