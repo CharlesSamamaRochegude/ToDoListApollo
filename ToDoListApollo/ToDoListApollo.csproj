@@ -24,9 +24,11 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\list.ts" />
     <None Remove="ClientApp\src\app\mock_list.ts" />
+    <None Remove="ClientApp\src\app\mock_tache.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\mock_tache.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\list.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\mock_list.ts" />
   </ItemGroup>

@@ -1,4 +1,9 @@
 <div *ngIf="liste">
   <h2>Details de la todolist : {{liste.name | uppercase}}</h2>
-  <span>description : {{liste.description}}</span>
+  <span>Description : {{liste.description}}</span>
+  <span>Listes des différentes taches :
+    <ul>
+      <li *ngFor="let tache of {{liste.tache}}"> Titre :{{tache.name}} description : {{tache.description}} </li>
+    </ul>
+  </span>
 </div>
