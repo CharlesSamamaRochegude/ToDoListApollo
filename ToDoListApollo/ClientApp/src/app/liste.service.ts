@@ -17,8 +17,8 @@ export class ListeService {
     const liste = of(LISTE);
     return liste;
   }
-  getListe(id: number): Observable<List> {
-    const list = LISTS.find(l => l.id === id)!;
+  getListe(id: number): Observable<Todoliste> {
+    const list = LISTE.find(l => l.id === id)!;
     return of(list);
   }
 }
