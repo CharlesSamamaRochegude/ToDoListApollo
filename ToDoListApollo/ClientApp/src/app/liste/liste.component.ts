@@ -12,7 +12,11 @@ import { ListeService } from '../liste.service';
 })
 
 export class ListeComponent implements OnInit {
-  liste: Todoliste[] = [];
+  lists: List[] = [];
+
+  getLists(): void {
+    this.listeService.getListes().subscribe(lists => this.lists = lists);
+  }
 
   constructor(private listeService: ListeService) { }
 

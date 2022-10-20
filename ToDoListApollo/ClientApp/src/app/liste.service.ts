@@ -10,12 +10,9 @@ import { LISTE } from './mock_list';
 })
 
 export class ListeService {
-  constructor() { }
-
-  // M�thode d'obtention de la liste des todolistes
-  getHeroes(): Observable<Todoliste[]> {
-    const liste = of(LISTE);
-    return liste;
+  getListes(): Observable<List[]> {
+    const lists = of(LISTS);
+    return lists;
   }
   getListe(id: number): Observable<Todoliste> {
     const list = LISTE.find(l => l.id === id)!;
