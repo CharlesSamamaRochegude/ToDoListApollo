@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import { List } from './list';
-import { LISTS } from './mock_list';
 import { Observable, of } from 'rxjs';
+
+// Import de nos propres fichiers
+import { Todoliste } from './list';
+import { LISTE } from './mock_list';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ListeService {
-  getHeroes(): Observable<List[]> {
-    const lists = of(LISTS);
-    return lists;
-  }
   constructor() { }
+
+  // Méthode d'obtention de la liste des todolistes
+  getHeroes(): Observable<Todoliste[]> {
+    const liste = of(LISTE);
+    return liste;
+  }
 }
