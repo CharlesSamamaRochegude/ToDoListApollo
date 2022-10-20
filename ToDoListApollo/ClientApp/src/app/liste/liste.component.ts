@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from '../list'
+
+// Import de nos propres fichiers
+import { Todoliste } from '../list'
 import { ListeService } from '../liste.service';
 
 
@@ -19,7 +21,11 @@ export class ListeComponent implements OnInit {
   constructor(private listeService: ListeService) { }
 
   ngOnInit(): void {
-    this.getLists();
+    this.getListe();
   }
 
+  // Obtention de la liste des todolistes depuis le service listeService
+  getListe(): void {
+    this.listeService.getHeroes().subscribe(liste => this.liste = liste);
+  }
 }
