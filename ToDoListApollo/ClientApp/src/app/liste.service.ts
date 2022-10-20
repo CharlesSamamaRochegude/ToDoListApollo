@@ -7,11 +7,11 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ListeService {
-  getHeroes(): Observable<List[]> {
+  getListes(): Observable<List[]> {
     const lists = of(LISTS);
     return lists;
   }
-  getHeroe(id: number): Observable<List> {
+  getListe(id: number): Observable<List> {
     const list = LISTS.find(l => l.id === id)!;
     return of(list);
   }

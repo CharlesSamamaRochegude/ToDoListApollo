@@ -13,7 +13,7 @@ export class ListeComponent implements OnInit {
   lists: List[] = [];
 
   getLists(): void {
-    this.listeService.getHeroes().subscribe(lists => this.lists = lists);
+    this.listeService.getListes().subscribe(lists => this.lists = lists);
   }
 
   constructor(private listeService: ListeService) { }
