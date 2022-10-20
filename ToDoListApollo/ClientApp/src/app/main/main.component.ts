@@ -10,8 +10,8 @@ import { Todoliste } from '../list';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
-  @Input() liste?: Todoliste;
+export class MainComponent implements OnInit {
+  liste: Todoliste | undefined;
   constructor(
     private route: ActivatedRoute,
     private ListeService: ListeService,
