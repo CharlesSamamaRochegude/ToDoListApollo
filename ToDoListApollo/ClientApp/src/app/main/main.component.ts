@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { ListeService } from '../liste.service';
-import { List } from '../list';
+import { Todoliste } from '../list';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +11,7 @@ import { List } from '../list';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  liste: List | undefined;
+  liste: Todoliste | undefined;
   constructor(
     private route: ActivatedRoute,
     private ListeService: ListeService,

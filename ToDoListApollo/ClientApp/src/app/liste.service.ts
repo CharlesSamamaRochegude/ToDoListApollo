@@ -10,12 +10,12 @@ import { LISTE } from './mock_list';
 })
 
 export class ListeService {
-  getListes(): Observable<List[]> {
-    const lists = of(LISTS);
+  getListes(): Observable<Todoliste[]> {
+    const lists = of(LISTE);
     return lists;
   }
-  getListe(id: number): Observable<List> {
-    const list = LISTS.find(l => l.id === id)!;
+  getListe(id: number): Observable<Todoliste> {
+    const list = LISTE.find(l => l.id === id)!;
     return of(list);
   }
 }

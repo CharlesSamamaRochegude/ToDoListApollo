@@ -12,20 +12,16 @@ import { ListeService } from '../liste.service';
 })
 
 export class ListeComponent implements OnInit {
-  lists: List[] = [];
-
-  getLists(): void {
-    this.listeService.getListes().subscribe(lists => this.lists = lists);
-  }
+  lists: Todoliste[] = [];
 
   constructor(private listeService: ListeService) { }
 
   ngOnInit(): void {
-    this.getListe();
+    this.getLists();
   }
 
   // Obtention de la liste des todolistes depuis le service listeService
-  getListe(): void {
-    this.listeService.getHeroes().subscribe(liste => this.liste = liste);
+  getLists(): void {
+    this.listeService.getListes().subscribe(lists => this.lists = lists);
   }
 }
