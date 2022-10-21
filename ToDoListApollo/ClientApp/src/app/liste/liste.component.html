@@ -5,5 +5,13 @@
       <span class="badge">{{todoliste.id}}</span>
       <span class="name">{{todoliste.name}}</span>
     </a>
-</li>
+  </li>
 </ul>
+
+<ul class="liste">
+  <li *ngFor="let tache of tache">
+    <p>ez{{tache.id}}</p>
+    <p>ez{{tache.name}}</p>
+  </li>
+</ul>
+
