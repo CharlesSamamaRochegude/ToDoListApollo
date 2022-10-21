@@ -1,9 +1,24 @@
-<h2>My Lists </h2>
-<ul class="liste">
-  <li *ngFor="let todoliste of liste">
-    <a routerLink="/details/{{todoliste.id}}">
-      <span class="badge">{{todoliste.id}}</span>
-      <span class="name">{{todoliste.name}}</span>
-    </a>
-</li>
-</ul>
+<div class="bloc_flex">
+  <div id="gauche">
+    <div id="actions">
+
+    </div>
+
+    <div id="liste">
+      <h2>My Lists </h2>
+      <ul class="liste">
+        <li *ngFor="let todoliste of liste">
+          <a routerLink="/{{todoliste.id}}">
+            <span class="badge">{{todoliste.id}}</span>
+            <span class="name">{{todoliste.name}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="droite">
+    <app-main></app-main>
+  </div>
+
+</div>

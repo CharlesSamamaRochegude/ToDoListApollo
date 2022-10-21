@@ -29,6 +29,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: ListeComponent, pathMatch: 'full' },
+      { path: ':id', component: ListeComponent },
       { path: 'details/:id', component: MainComponent }
     ])
   ],

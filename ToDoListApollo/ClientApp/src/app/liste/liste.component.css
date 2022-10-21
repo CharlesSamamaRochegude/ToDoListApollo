@@ -1,0 +1,13 @@
+.bloc_flex
+{
+    display: flex;
+}
+
+#gauche
+{
+    flex:1;
+}
+#droite
+{
+    flex: auto;
+}
