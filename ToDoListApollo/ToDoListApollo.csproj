@@ -11,7 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="17.3.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +29,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Class.cs" />
+    <Compile Remove="ClientApp\src\app\Class.cs" />
+    <Compile Remove="ClientApp\ToDoList.cs" />
+    <Compile Remove="Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\Class.cs" />
     <None Remove="ClientApp\src\app\list.ts" />
     <None Remove="ClientApp\src\app\mock_list.ts" />
     <None Remove="ClientApp\src\app\mock_tache.ts" />
+    <None Remove="ClientApp\ToDoList.cs" />
   </ItemGroup>
 
   <ItemGroup>
