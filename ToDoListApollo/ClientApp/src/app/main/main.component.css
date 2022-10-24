@@ -1,0 +1,25 @@
+#entete
+{
+    display: flex;
+    min-height: 80px;
+    background-color: gray;
+    text-align: center;
+}
+#titre
+{
+    flex: none;
+    min-width: 400px;
+}
+#date
+{
+
+}
+#description
+{
+
+}
+
+#corps
+{
+    padding-left: 20px;
+}

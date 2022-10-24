@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -13,27 +13,29 @@ import { tache } from '../tache';
   styleUrls: ['./main.component.css']
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent /*implements OnInit*/ {
   liste: Todoliste | undefined;
   tache: tache[] = [];
+  @Input() todoliste?: Todoliste;
+  @Input() taches?: tache[];
 
   constructor(private route: ActivatedRoute,
               private ListeService: ListeService,
               private location: Location
             ) { }
-  ngOnInit(): void {
-    this.getToDoListe();
-    this.getTache();
-  }
-  // Obtention de la todoliste voulue
-  getToDoListe(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.ListeService.getTodoliste(id).subscribe(liste => this.liste = liste);
-  }
+  //ngOnInit(): void {
+  //  this.getToDoListe();
+  //  this.getTache();
+  //}
+  //// Obtention de la todoliste voulue
+  //getToDoListe(): void {
+  //  const id = Number(this.route.snapshot.paramMap.get('id'));
+  //  this.ListeService.getTodoliste(id).subscribe(liste => this.liste = liste);
+  //}
 
-  getTache(): void {
-    if (this.liste) {
-      this.tache = this.liste.taches;
-    }
-  }
+  //getTache(): void {
+  //  if (this.todoliste) {
+  //    this.tache = this.todoliste.taches;
+  //  }
+  //}
 }

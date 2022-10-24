@@ -1,11 +1,27 @@
-<div *ngIf="liste">
-  <h2>Details de la todolist : {{liste.name | uppercase}}</h2>
-  <span>Description : {{liste.description}}</span>
-  <h4>Listes des différentes taches : </h4>
+
+<div id="entete">
+  <div id="titre">
+    <h2 *ngIf="todoliste">{{todoliste.name}}</h2>
+  </div>
+  <div id="date">
+    1er <br />NOV
+  </div>
+  <div id="description">
+    <p *ngIf="todoliste">{{todoliste.description}}</p>
+  </div>
+</div>
+
+<div *ngIf="todoliste">
+  <div id="corps">
+    <h2>Details de la todolist : {{todoliste.name | uppercase}}</h2>
+    <span>Description : {{todoliste.description}}</span>
+    <h4>Listes des différentes taches : </h4>
     <ul>
-      <li *ngFor="let tache of tache">
+      <li *ngFor="let tache of taches">
         <p> Titre :{{tache.name}}</p>
-        <p>description : {{tache.description}}</p> </li>
+        <p>description : {{tache.description}}</p>
+      </li>
     </ul>
+  </div>
   
 </div>
