@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-createur-liste',
@@ -10,7 +11,11 @@ export class CreateurListeComponent implements OnInit {
   description?: string;
   date?: string;
 
-  constructor() { }
+  aujourdhui: string | null = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+
+
+  constructor(private datePipe: DatePipe) {
+  }
 
   ngOnInit(): void {
   }

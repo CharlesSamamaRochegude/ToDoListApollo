@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 // Import de nos propres components
 import { AppComponent } from './app.component';
@@ -23,7 +24,7 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
     ListeComponent,
     MainComponent,
     UtilisateurComponent,
-    CreateurListeComponent
+    CreateurListeComponent,
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,7 +36,7 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
       { path: 'creation', component: CreateurListeComponent}
     ])
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
