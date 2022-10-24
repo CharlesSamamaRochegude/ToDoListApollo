@@ -12,6 +12,7 @@ import { TacheComponent } from './tache/tache.component';
 import { ListeComponent } from './liste/liste.component';
 import { MainComponent } from './main/main.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { CreateurListeComponent } from './createur-liste/createur-liste.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     TacheComponent,
     ListeComponent,
     MainComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    CreateurListeComponent
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,8 +31,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: ListeComponent, pathMatch: 'full' },
-      { path: ':id', component: ListeComponent },
-      { path: 'details/:id', component: MainComponent }
+      { path: 'details/:id', component: MainComponent },
+      { path: 'creation', component: CreateurListeComponent}
     ])
   ],
   providers: [],
