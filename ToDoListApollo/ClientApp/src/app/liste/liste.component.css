@@ -3,11 +3,26 @@
     display: flex;
 }
 
+#actions {
+  min-height: 80px;
+  background-color: gray;
+}
 #gauche
 {
-    flex:1;
+    flex:none;
+    min-width: 350px
 }
 #droite
 {
     flex: auto;
+}
+
+ul
+{
+    list-style: none;
+    padding-left:0;
+}
+.bouton_liste
+{
+    width: 100%;
 }
