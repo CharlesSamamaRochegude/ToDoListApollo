@@ -14,7 +14,7 @@ import { tache } from '../tache';
 
 export class ListeComponent implements OnInit {
   liste: Todoliste[] = [];
-  public tache: tache[] = [{id:1,name:"eza",description:"ezae",id_l:2}];
+  public tache: tache[] | undefined = [{id:1,name:"eza",description:"ezae",id_l:2}];
   http: HttpClient;
   baseUrl: String;
 
@@ -37,8 +37,14 @@ export class ListeComponent implements OnInit {
     }, error => console.error(error));
   }
 
+  async gettache2() {
+    this.tache = await this.listeService.gettache2();
+  }
+
   getTACHE(): void {
-    this.tache = this.listeService.gettache();
+    this.listeService.gettache().subscribe(result => {
+      this.tache = result;
+    }, error => console.error(error));
   }
   // Obtention de la liste des todolistes depuis le service listeService
   getListe(): void {

@@ -16,7 +16,7 @@ const PROXY_CONFIG = [
   },
   {
     context: [
-      "/HomeController1",
+      "/home",
     ],
     target: target,
     secure: false,
