@@ -1,10 +1,20 @@
-﻿namespace ToDoListApollo
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Configuration;
+
+namespace ToDoListApollo
 {
     public class Tache
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public int id_l { get; set; }
-}
+        [Required, MaxLength(50, ErrorMessage = "Titre must be 50 characters or less")]
+        public String? Titre_t { get; set; }
+
+        [Key]
+        public int id_t { get; set; }
+
+        [IntegerValidator(MinValue = 0, MaxValue = 1, ExcludeRange = true)]
+        public int active_l { get; set; }
+
+        public DateTime Date_echeance_l { get; set; }
+    }
 }

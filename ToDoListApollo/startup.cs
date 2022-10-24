@@ -20,5 +20,12 @@ namespace ToDoListApollo
         }
         public DbSet<Tache> Tache { get; set; }
         public DbSet<ToDoListe> ToDoListe { get; set; }
+        public DbSet<Personne> Personne { get; set; }
+
+        public List<ToDoListe> AfficherToDoListes()
+        {
+            var all = from p in ToDoListe select p;
+            return all.ToList();
+        }
     }
 }
