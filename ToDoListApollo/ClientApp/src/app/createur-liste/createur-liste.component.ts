@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-createur-liste',
@@ -8,19 +11,25 @@ import { Component, OnInit } from '@angular/core';
 export class CreateurListeComponent implements OnInit {
   titre?: string;
   description?: string;
-  date?: string;
+  date?: string | null;
 
-  constructor() { }
+  aujourdhui: string | null = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
-  ngOnInit(): void {
+
+  constructor(private datePipe: DatePipe, private location: Location) {
   }
 
-  onSubmitForm() {
+  ngOnInit(): void {
+    this.date = this.aujourdhui;
+  }
+
+  onSubmitForm(): void {
     if (this.date) {
       this.date = this.date.split("-")[2] + "-" + this.date.split("-")[1] + "-" + this.date.split("-")[0];
     }
     console.log(this.titre);
     console.log(this.date);
+    this.location.back();
   }
 
 }
