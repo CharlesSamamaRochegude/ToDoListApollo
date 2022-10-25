@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data.Entity;
+using System.Linq.Expressions;
 using System.Net;
+using System.Reflection;
 
 
 namespace ToDoListApollo.Controllers
@@ -10,14 +12,16 @@ namespace ToDoListApollo.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        
+
         private readonly ILogger<HomeController> _logger;
         private AppDbContext _context;
+        private IQueryProvider _inner;
         public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
             _context = context;
         }
+
 
         /*[HttpGet]
         public ienumerable<tache> get()
@@ -31,13 +35,14 @@ namespace ToDoListApollo.Controllers
             })
             .toarray();
         }*/
-        [HttpPost]
+        [HttpPost("posttodo/")]
         public IActionResult AjouterToDoList( ToDoListe todoliste)
         {
             try
             {
                 var status = _context.ToDoListe.Add(todoliste);
                 _context.SaveChanges();
+                _logger.LogTrace("ajouter à la bdd");
                 return Ok();
             }
             catch(Exception ex)
@@ -69,8 +74,8 @@ namespace ToDoListApollo.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("list")]
+        [HttpGet("list")]
+        
 
         public IEnumerable<ToDoListe> GetToDoListes() {
             return AfficherToDoListes();
@@ -94,9 +99,7 @@ namespace ToDoListApollo.Controllers
         public List<ToDoListe> AfficherToDoListes()
         {
             //var all = from p in _context.ToDoListe select p;
-            return _context.ToDoListe
-                .Include(t => t.Tache)
-                .Where(t => t.Active_l == 1).ToList();
+            return _context.ToDoListe.ToList();
         }
 
         public Task<List<ToDoListe>> AfficherToDoListesAsync()
@@ -104,5 +107,6 @@ namespace ToDoListApollo.Controllers
             //var all = from p in _context.ToDoListe select p;
             return _context.ToDoListe.ToListAsync();
         }
+
     }
 }
