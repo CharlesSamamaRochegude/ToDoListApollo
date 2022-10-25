@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Location, DatePipe } from '@angular/common';
 
 
 @Component({
@@ -10,13 +11,15 @@ import { HttpClient } from '@angular/common/http';
 export class CreateurListeComponent implements OnInit {
   titre?: string;
   description?: string;
-  date?: string;
+  date?: string | null;
   http: HttpClient ;
   baseUrl: string;
+  aujourdhui: string | null = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private datePipe: DatePipe, private location: Location) {
     this.http = http;
-    this.baseUrl = baseUrl;
+    this.baseUrl = baseUrl
+
 }
 
   ngOnInit(): void {
