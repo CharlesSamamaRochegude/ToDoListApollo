@@ -14,7 +14,6 @@ import { tache } from '../tache';
 
 export class ListeComponent implements OnInit {
   liste: Todoliste[] = [];
-  public tache: tache[] = [{id:1,name:"eza",description:"ezae",id_l:2}];
   http: HttpClient;
   baseUrl: String;
 
@@ -29,26 +28,19 @@ export class ListeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListe();
-    this.getTACHE();
-  }
-  gettache(): void {
-    this.http.get<tache[]>(this.baseUrl + 'HomeController1').subscribe(result => {
-      this.tache = result;
-    }, error => console.error(error));
-  }
-
-  getTACHE(): void {
-    this.tache = this.listeService.gettache();
+    console.log("test");
+    console.log(this.liste);
   }
   // Obtention de la liste des todolistes depuis le service listeService
   getListe(): void {
     this.listeService.getListe().subscribe(liste => this.liste = liste);
   }
+  // Lors du clique d'une todoliste, on affiche ses informations
   onSelect(todoliste: Todoliste): void {
     this.listeSelectionnee = todoliste;
     this.tachesListeSelectionnee = todoliste.taches;
+    console.log(todoliste.taches);
   }
-
 }
 
 

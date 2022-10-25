@@ -4,7 +4,7 @@
 }
 
 #actions {
-  min-height: 80px;
+  min-height: 95px;
   background-color: gray;
 }
 #gauche
@@ -25,4 +25,19 @@ ul
 .bouton_liste
 {
     width: 100%;
+    display: flex
 }
+
+.info{
+    flex: 1.5;
+}
+.titre{
+    text-align: left;
+    text-decoration: underline;
+}
+.desc {
+    max-width: 280px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
