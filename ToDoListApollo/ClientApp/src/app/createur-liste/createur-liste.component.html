@@ -1,19 +1,19 @@
 <h1>Création de Todoliste</h1>
 <form (ngSubmit)="onSubmitForm()">
-  >
   <label for="titre">Titre : </label>
   <input type="text" name="titre" value="" [(ngModel)]="titre" />
   <br />
   <label for="desc">Description : </label>
   <input type="text" name="desc" value="" [(ngModel)]="description" />
   <br />
-  <label for="date'">Date : </label>
-  <input type="date" name="date" value="{{aujourdhui}}" min="{{aujourdhui}}" [(ngModel)]="date" />
+  <label for="date">Date : </label>
+  <input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" />
 
 
   <br />
   <label for="util">Personnes : </label>
   <input type="text" name="util" value="" />
 
+  <br />
   <button type="submit">Créer</button>
 </form>
