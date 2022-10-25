@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToDoListApollo.Migrations
 {
-    public partial class InitialCreatee : Migration
+    public partial class InitialeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace ToDoListApollo.Migrations
                 name: "ToDoListe",
                 columns: table => new
                 {
-                    id_l = table.Column<int>(type: "int", nullable: false)
+                    id_l = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titre_l = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
@@ -44,7 +44,7 @@ namespace ToDoListApollo.Migrations
                 columns: table => new
                 {
                     Personneid_p = table.Column<int>(type: "int", nullable: false),
-                    ToDoListesid_l = table.Column<int>(type: "int", nullable: false)
+                    ToDoListesid_l = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,8 +72,8 @@ namespace ToDoListApollo.Migrations
                     Titre_t = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     active_l = table.Column<int>(type: "int", nullable: false),
                     Date_echeance_l = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Personneid_p = table.Column<int>(type: "int", nullable: true),
-                    ToDoListeid_l = table.Column<int>(type: "int", nullable: true)
+                    TodoListId = table.Column<long>(type: "bigint", nullable: false),
+                    Personneid_p = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,11 +84,27 @@ namespace ToDoListApollo.Migrations
                         principalTable: "Personne",
                         principalColumn: "id_p");
                     table.ForeignKey(
-                        name: "FK_Tache_ToDoListe_ToDoListeid_l",
-                        column: x => x.ToDoListeid_l,
+                        name: "FK_Tache_ToDoListe_TodoListId",
+                        column: x => x.TodoListId,
                         principalTable: "ToDoListe",
-                        principalColumn: "id_l");
+                        principalColumn: "id_l",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Personne",
+                columns: new[] { "id_p", "Nom", "Prenom" },
+                values: new object[] { 1, "", "Julien" });
+
+            migrationBuilder.InsertData(
+                table: "Personne",
+                columns: new[] { "id_p", "Nom", "Prenom" },
+                values: new object[] { 2, "", "Julien2" });
+
+            migrationBuilder.InsertData(
+                table: "ToDoListe",
+                columns: new[] { "id_l", "Active_l", "Date_echeance_l", "Description", "Titre_l" },
+                values: new object[] { 1L, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Titre" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonneToDoListe_ToDoListesid_l",
@@ -101,9 +117,9 @@ namespace ToDoListApollo.Migrations
                 column: "Personneid_p");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tache_ToDoListeid_l",
+                name: "IX_Tache_TodoListId",
                 table: "Tache",
-                column: "ToDoListeid_l");
+                column: "TodoListId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

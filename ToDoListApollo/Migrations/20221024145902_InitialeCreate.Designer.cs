@@ -11,9 +11,9 @@ using ToDoListApollo;
 
 namespace ToDoListApollo.Migrations
 {
-    [DbContext(typeof(startup))]
-    [Migration("20221024085050_InitialCreatee")]
-    partial class InitialCreatee
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20221024145902_InitialeCreate")]
+    partial class InitialeCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,8 @@ namespace ToDoListApollo.Migrations
                     b.Property<int>("Personneid_p")
                         .HasColumnType("int");
 
-                    b.Property<int>("ToDoListesid_l")
-                        .HasColumnType("int");
+                    b.Property<long>("ToDoListesid_l")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Personneid_p", "ToDoListesid_l");
 
@@ -60,6 +60,20 @@ namespace ToDoListApollo.Migrations
                     b.HasKey("id_p");
 
                     b.ToTable("Personne");
+
+                    b.HasData(
+                        new
+                        {
+                            id_p = 1,
+                            Nom = "",
+                            Prenom = "Julien"
+                        },
+                        new
+                        {
+                            id_p = 2,
+                            Nom = "",
+                            Prenom = "Julien2"
+                        });
                 });
 
             modelBuilder.Entity("ToDoListApollo.Tache", b =>
@@ -81,8 +95,8 @@ namespace ToDoListApollo.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ToDoListeid_l")
-                        .HasColumnType("int");
+                    b.Property<long>("TodoListId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("active_l")
                         .HasColumnType("int");
@@ -91,18 +105,18 @@ namespace ToDoListApollo.Migrations
 
                     b.HasIndex("Personneid_p");
 
-                    b.HasIndex("ToDoListeid_l");
+                    b.HasIndex("TodoListId");
 
                     b.ToTable("Tache");
                 });
 
             modelBuilder.Entity("ToDoListApollo.ToDoListe", b =>
                 {
-                    b.Property<int>("id_l")
+                    b.Property<long>("id_l")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_l"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_l"), 1L, 1);
 
                     b.Property<int>("Active_l")
                         .HasColumnType("int");
@@ -122,6 +136,15 @@ namespace ToDoListApollo.Migrations
                     b.HasKey("id_l");
 
                     b.ToTable("ToDoListe");
+
+                    b.HasData(
+                        new
+                        {
+                            id_l = 1L,
+                            Active_l = 0,
+                            Date_echeance_l = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Titre_l = "Titre"
+                        });
                 });
 
             modelBuilder.Entity("PersonneToDoListe", b =>
@@ -145,9 +168,13 @@ namespace ToDoListApollo.Migrations
                         .WithMany("Tache")
                         .HasForeignKey("Personneid_p");
 
-                    b.HasOne("ToDoListApollo.ToDoListe", null)
+                    b.HasOne("ToDoListApollo.ToDoListe", "ToDoListe")
                         .WithMany("Tache")
-                        .HasForeignKey("ToDoListeid_l");
+                        .HasForeignKey("TodoListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ToDoListe");
                 });
 
             modelBuilder.Entity("ToDoListApollo.Personne", b =>
