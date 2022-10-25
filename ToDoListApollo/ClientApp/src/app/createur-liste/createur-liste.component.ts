@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 
 
 @Component({
