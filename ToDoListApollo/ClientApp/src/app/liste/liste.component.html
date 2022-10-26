@@ -5,12 +5,14 @@
     </div>
 
     <div id="liste">
-      <h2>My Lists </h2>
       <ul class="liste">
         <li *ngFor="let todoliste of liste">
           <button (click)="onSelect(todoliste)" class="bouton_liste">
-            <span class="badge">{{todoliste.id}}</span>
-            <span class="name">{{todoliste.name}}</span>
+            <div class="info">
+              <h5 class="titre">{{todoliste.titre_l}}</h5>
+              <p class="desc">{{todoliste.description | slice:0:100}}...</p>
+            </div>
+            <div class="utili">{{todoliste.id_l}}</div>
           </button>
         </li>
       </ul>

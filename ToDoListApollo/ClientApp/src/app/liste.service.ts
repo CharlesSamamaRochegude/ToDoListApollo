@@ -1,21 +1,32 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { observable, Observable, of } from 'rxjs';
 
 // Import de nos propres fichiers
 import { Todoliste } from './list';
-import { LISTE } from './mock_list';
+import { tache } from './tache';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ListeService {
-  getListe(): Observable<Todoliste[]> {
-    const liste = of(LISTE);
-    return liste;
+  tache: tache[] =[] ;
+  http: HttpClient;
+  baseUrl: String;
+
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.http = http;
+    this.baseUrl = baseUrl;
   }
-  getTodoliste(id: number): Observable<Todoliste> {
-    const todoliste = LISTE.find(l => l.id === id)!;
-    return of(todoliste);
+
+  gettache(id: number): Observable<tache[]> {
+    return this.http.get<tache[]>(this.baseUrl + 'home/listTache/' + id);
+  }
+
+  getListe(): Observable<Todoliste[]> {
+    var requeteTodoliste = this.http.get<Todoliste[]>(this.baseUrl + 'home/list');
+
+    return requeteTodoliste;
   }
 }

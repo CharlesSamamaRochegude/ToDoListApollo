@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import * as fr from '@angular/common/locales/fr';
+
 
 // Import de nos propres components
 import { AppComponent } from './app.component';
@@ -23,7 +26,7 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
     ListeComponent,
     MainComponent,
     UtilisateurComponent,
-    CreateurListeComponent
+    CreateurListeComponent,
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,7 +38,14 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
       { path: 'creation', component: CreateurListeComponent}
     ])
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+    { provide: LOCALE_ID, useValue: 'fr-FR' }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+}
