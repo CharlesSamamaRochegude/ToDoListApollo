@@ -1,7 +1,7 @@
 #entete
 {
     display: flex;
-    min-height: 80px;
+    min-height: 10vh;
     background-color: gray;
     text-align: center;
 }
@@ -12,14 +12,22 @@
 }
 #date
 {
-
+    min-width:135px;
+    border-left:double;
+    border-right: double;
+    font-size: 1em;
+    margin-right: 10px
 }
-#description
-{
 
+#description {
+  overflow-y: scroll;
 }
 
 #corps
 {
     padding-left: 20px;
+}
+#description {
+  word-wrap: break-word;
+  max-height: 10vh
 }
