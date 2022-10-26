@@ -22,28 +22,18 @@ namespace ToDoListApollo.Controllers
             _context = context;
         }
 
-
-        /*[HttpGet]
-        public ienumerable<tache> get()
-        {
-            return enumerable.range(1, 1).select(index => new tache
-            {
-                name = "gzre",
-                id = 2,
-                description = "é&",
-                id_l = 2
-            })
-            .toarray();
-        }*/
-        [HttpPost("posttodo/")]
-        public IActionResult AjouterToDoList( ToDoListe todoliste)
+        //Ajout d'une nouvelle ToDoList
+        [HttpPost("posttodo")]
+        public IActionResult AjouterToDoList([FromBody] ToDoListeViewModel todolisteV)
         {
             try
             {
-                var status = _context.ToDoListe.Add(todoliste);
+                var todoliste = ToDoListeViewModel.Transform(todolisteV);
+                /*todoliste.Personne.Add(GetPersonneById(id));*/
+                _context.ToDoListe.Add(todoliste);
                 _context.SaveChanges();
                 _logger.LogTrace("ajouter à la bdd");
-                return Ok();
+                return Ok(todoliste.id_l);
             }
             catch(Exception ex)
             {
@@ -52,9 +42,34 @@ namespace ToDoListApollo.Controllers
             }
         }
 
+        [HttpPost("postajoutpersonne/{id}")]
+        public IActionResult AjouterPersonne(long id, [FromBody] List<int> id_p)
+        {
+            try
+            {
+                ToDoListe todo = GetToDoListeById(id);
+                if (todo.Personne == null)
+                {
+                    todo.Personne = new List<Personne>();
+                }
+                foreach (var item in id_p)
+                {
+                    todo.Personne.Add(GetPersonneById(item));
+                }
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+        //Modification d'une ToDoList
         [HttpPost]
-        [Route("update/{id}")]
-        public IActionResult ModifierToDoList(long id)
+        [Route("update")]
+        public IActionResult ToDoListTerminé(long id)
         {
             try
             {
@@ -74,36 +89,116 @@ namespace ToDoListApollo.Controllers
             }
         }
 
+        //Suppression d'une ToDoList
+        [HttpPost("postdeltodo/")]
+        public IActionResult SupprimerToDoList(int id)
+        {
+            try
+            {
+                _context.ToDoListe.Remove(_context.ToDoListe.Find(id));
+                _context.SaveChanges();
+                _logger.LogTrace("supprimer de la bdd");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+        //Suppression d'une tache
+        [HttpPost("postdeltache/")]
+        public IActionResult SupprimerTache(int id)
+        {
+            try
+            {
+                _context.Tache.Remove(_context.Tache.Find(id));
+                _context.SaveChanges();
+                _logger.LogTrace("supprimer de la bdd");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+        //Affichage de l'ensemble des ToDoListes
         [HttpGet("list")]
         public IEnumerable<ToDoListe> GetToDoListes() {
             return AfficherToDoListes();
         }
 
+        //Affichage des ToDoListes qui m'appartiennent
+        [HttpGet("listByUserId")]
+        public IEnumerable<ToDoListe> GetToDoListesByUserID(int id)
+        {
+            Personne _user = GetPersonneById(id);
+            return _context.ToDoListe.Where(t => t.Personne == _user).ToList();
+        }
+
+        //Affichage des taches qui appartiennent à une todoliste
+        [HttpGet("listTache/{id}")]
+        public IEnumerable<Tache> GetTaches(int id)
+        {
+            return _context.Tache.Where(t => t.TodoListId == id).ToList();
+        }
+
+
+
+        //Affichage de l'ensemble des ToDoListes en asynchrone
         [HttpGet]
-        [Route("list2")]
+        [Route("listasync")]
 
         public Task<List<ToDoListe>> GetToDoListesAsync()
         {
             return AfficherToDoListesAsync();
         }
+        [HttpGet("listpersonne")]
 
+        //Renvoie la liste des utilisateurs
+        public IEnumerable<Personne> GetPersonne()
+        {
+            return Afficher_personnes();
+        }
         [HttpGet]
 
         public string Get()
         {
             return "test";
         }
-
-        public List<ToDoListe> AfficherToDoListes()
+        public List<Personne> Afficher_personnes()
         {
             //var all = from p in _context.ToDoListe select p;
+            return _context.Personne.ToList();
+        }
+        public List<ToDoListe> AfficherToDoListes()
+        {
             return _context.ToDoListe.ToList();
         }
 
         public Task<List<ToDoListe>> AfficherToDoListesAsync()
         {
-            //var all = from p in _context.ToDoListe select p;
             return _context.ToDoListe.ToListAsync();
+        }
+
+        public ToDoListe GetToDoListeById(long id)
+        {
+            ToDoListe result = _context.ToDoListe.Include(p=>p.Personne).Where(l=>l.id_l ==id).SingleOrDefault();
+            return result;
+        }
+
+        public Tache GetTacheById(int id)
+        {
+            var result = _context.Tache.Find(id);
+            return result;
+        }
+        public Personne GetPersonneById(int id)
+        {
+            var result = _context.Personne.Find(id);
+            return result;
         }
 
     }
