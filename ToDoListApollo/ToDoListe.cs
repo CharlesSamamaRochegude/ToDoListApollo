@@ -14,7 +14,7 @@ namespace ToDoListApollo
         [MaxLength(300, ErrorMessage = "Description must be 300 characters or less")]
         public String? Description { get; set; }
 
-        public DateTime Date_echeance_l { get; set; }
+        public DateTimeOffset Date_echeance_l { get; set; }
 
         [IntegerValidator(MinValue = 0, MaxValue = 1,ExcludeRange = true)]
         public int Active_l { get; set; }
