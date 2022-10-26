@@ -1,7 +1,7 @@
 #entete
 {
     display: flex;
-    min-height: 80px;
+    min-height: 95px;
     background-color: gray;
     text-align: center;
 }
@@ -12,8 +12,12 @@
 }
 #date
 {
-
+    width:135px;
+    border-left:double;
+    border-right: double;
+    font-size: 1em;
 }
+
 #description
 {
 

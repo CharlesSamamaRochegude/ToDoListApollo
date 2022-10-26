@@ -75,8 +75,6 @@ namespace ToDoListApollo.Controllers
         }
 
         [HttpGet("list")]
-        
-
         public IEnumerable<ToDoListe> GetToDoListes() {
             return AfficherToDoListes();
         }
