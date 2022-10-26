@@ -1,29 +1,38 @@
 #entete
 {
     display: flex;
-    min-height: 95px;
+    min-height: 10vh;
     background-color: gray;
     text-align: center;
 }
 #titre
 {
-    flex: none;
-    min-width: 400px;
+    flex: 1;
+    min-width: 215px;
 }
 #date
 {
-    width:135px;
+    min-width:135px;
     border-left:double;
     border-right: double;
     font-size: 1em;
+    margin-right: 10px
 }
 
-#description
-{
-
+#description {
+  overflow-y: scroll;
+  flex: auto;
+  text-align: left;
+  word-wrap: break-word;
+  max-height: 10vh;
+  flex:4
 }
-
 #corps
 {
     padding-left: 20px;
+}
+
+.tacheChargees{
+    display: flex;
+    border: outset 1px;
 }
