@@ -6,7 +6,7 @@ namespace ToDoListApollo
 {
     public class Tache
     {
-        [Required, MaxLength(50, ErrorMessage = "Titre must be 50 characters or less")]
+        [Required, MaxLength(200, ErrorMessage = "Titre must be 50 characters or less")]
         public String? Titre_t { get; set; }
 
         [Key]

@@ -24,17 +24,42 @@ namespace ToDoListApollo.Controllers
 
         //Ajout d'une nouvelle ToDoList
         [HttpPost("posttodo")]
-        public IActionResult AjouterToDoList([FromBody] ToDoListe todoliste)
+        public IActionResult AjouterToDoList([FromBody] ToDoListeViewModel todolisteV)
         {
             try
             {
+                var todoliste = ToDoListeViewModel.Transform(todolisteV);
                 /*todoliste.Personne.Add(GetPersonneById(id));*/
                 _context.ToDoListe.Add(todoliste);
                 _context.SaveChanges();
                 _logger.LogTrace("ajouter à la bdd");
-                return Ok();
+                return Ok(todoliste.id_l);
             }
             catch(Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+        [HttpPost("postajoutpersonne/{id}")]
+        public IActionResult AjouterPersonne(long id, [FromBody] List<int> id_p)
+        {
+            try
+            {
+                ToDoListe todo = GetToDoListeById(id);
+                if (todo.Personne == null)
+                {
+                    todo.Personne = new List<Personne>();
+                }
+                foreach (var item in id_p)
+                {
+                    todo.Personne.Add(GetPersonneById(item));
+                }
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message, ex);
                 return NotFound();
@@ -115,7 +140,7 @@ namespace ToDoListApollo.Controllers
         }
 
         //Affichage des taches qui appartiennent à une todoliste
-        [HttpGet("listTache")]
+        [HttpGet("listTache/{id}")]
         public IEnumerable<Tache> GetTaches(int id)
         {
             return _context.Tache.Where(t => t.TodoListId == id).ToList();
@@ -159,9 +184,9 @@ namespace ToDoListApollo.Controllers
             return _context.ToDoListe.ToListAsync();
         }
 
-        public ToDoListe GetToDoListeById(int id)
+        public ToDoListe GetToDoListeById(long id)
         {
-            var result = _context.ToDoListe.Find(id);
+            ToDoListe result = _context.ToDoListe.Include(p=>p.Personne).Where(l=>l.id_l ==id).SingleOrDefault();
             return result;
         }
 

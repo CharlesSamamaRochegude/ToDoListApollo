@@ -1,10 +1,13 @@
+import { personne } from './personne';
 import { tache } from './tache';
 
 // Définition de l'interface des Todolistes
 export interface Todoliste {
   id_l: number;
-  titre_l: string;
-  date_echeance_l: Date;
-  description: string;
+  titre_l: string | undefined;
+  description: string | undefined;
+  date_echeance_l: string | null ;
+  active_l: boolean;
   taches: tache[];
+  personnes: personne[];
 }
