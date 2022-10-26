@@ -14,31 +14,37 @@ import { tache } from '../tache';
 
 export class ListeComponent implements OnInit {
   liste: Todoliste[] = [];
-  public tache: tache[] = [];
+  http: HttpClient;
+  baseUrl: String;
+
   listeSelectionnee?: Todoliste;
-  tachesListeSelectionnee?: tache[];
+  tachesListeSelectionnee: tache[] =[];
 
 
-  constructor(private listeService: ListeService,http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<tache[]>(baseUrl + 'HomeController1').subscribe(result => {
-      this.tache = result;
-    }, error => console.error(error));
+  constructor(private listeService: ListeService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.http = http;
+    this.baseUrl = baseUrl;
   }
 
   ngOnInit(): void {
     this.getListe();
-    
-  }
+    console.log("test");
+    console.log(this.liste);
+    }
 
   // Obtention de la liste des todolistes depuis le service listeService
   getListe(): void {
     this.listeService.getListe().subscribe(liste => this.liste = liste);
   }
+  // Lors du clique d'une todoliste, on affiche ses informations
   onSelect(todoliste: Todoliste): void {
     this.listeSelectionnee = todoliste;
-    this.tachesListeSelectionnee = todoliste.taches;
+    this.listeService.gettache(todoliste.id_l).subscribe(result => {
+      this.tachesListeSelectionnee = result;
+      console.log(this.tachesListeSelectionnee);
+    }, error => console.error(error));
+    
   }
-
 }
 
 

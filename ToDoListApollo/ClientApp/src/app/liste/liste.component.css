@@ -25,6 +25,7 @@ ul
 .bouton_liste
 {
     width: 100%;
+    display: flex
 }
 .listetodoliste {
   max-height: 85vh;
