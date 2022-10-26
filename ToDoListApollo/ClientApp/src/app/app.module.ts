@@ -16,6 +16,7 @@ import { ListeComponent } from './liste/liste.component';
 import { MainComponent } from './main/main.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { CreateurListeComponent } from './createur-liste/createur-liste.component';
+import { CreateurTacheComponent } from './createur-tache/createur-tache.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
     MainComponent,
     UtilisateurComponent,
     CreateurListeComponent,
+    CreateurTacheComponent,
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

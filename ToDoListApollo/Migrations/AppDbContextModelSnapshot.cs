@@ -85,7 +85,7 @@ namespace ToDoListApollo.Migrations
                     b.Property<DateTime>("Date_echeance_l")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Personneid_p")
+                    b.Property<int>("PersonneId")
                         .HasColumnType("int");
 
                     b.Property<string>("Titre_t")
@@ -101,7 +101,7 @@ namespace ToDoListApollo.Migrations
 
                     b.HasKey("id_t");
 
-                    b.HasIndex("Personneid_p");
+                    b.HasIndex("PersonneId");
 
                     b.HasIndex("TodoListId");
 
@@ -161,15 +161,19 @@ namespace ToDoListApollo.Migrations
 
             modelBuilder.Entity("ToDoListApollo.Tache", b =>
                 {
-                    b.HasOne("ToDoListApollo.Personne", null)
+                    b.HasOne("ToDoListApollo.Personne", "Personne")
                         .WithMany("Tache")
-                        .HasForeignKey("Personneid_p");
+                        .HasForeignKey("PersonneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ToDoListApollo.ToDoListe", "ToDoListe")
                         .WithMany("Tache")
                         .HasForeignKey("TodoListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Personne");
 
                     b.Navigation("ToDoListe");
                 });

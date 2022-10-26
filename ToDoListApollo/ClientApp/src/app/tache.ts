@@ -1,9 +1,12 @@
 
 
 export interface tache {
-  id: number;
-  titre_t: string;
-  description: string;
-  id_l: number;
+  id_t: number;
+  Titre_t: string;
+  active_l: boolean;
+  Date_echeance_l: string | null;
+  TodoListId: number;
+  PersonneId: number;
+
 
 }

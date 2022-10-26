@@ -7,7 +7,7 @@ namespace ToDoListApollo
     public class Tache
     {
         [Required, MaxLength(200, ErrorMessage = "Titre must be 50 characters or less")]
-        public String? Titre_t { get; set; }
+        public string Titre_t { get; set; }
 
         [Key]
         public int id_t { get; set; }
@@ -20,6 +20,11 @@ namespace ToDoListApollo
         [ForeignKey(nameof(ToDoListe))]
         public long TodoListId { get; set; }
         
-        public ToDoListe ToDoListe { get; set; }
+        public ToDoListe? ToDoListe { get; set; }
+
+        [ForeignKey(nameof(Personne))]
+        public int PersonneId { get; set; }
+
+        public Personne? Personne { get; set; }
     }
 }
