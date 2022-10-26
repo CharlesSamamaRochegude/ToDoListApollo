@@ -5,8 +5,7 @@
     </div>
 
     <div id="liste">
-      <h2>My Lists </h2>
-      <ul class="liste">
+      <ul class="listetodoliste">
         <li *ngFor="let todoliste of liste">
           <button (click)="onSelect(todoliste)" class="bouton_liste">
             <span class="badge">{{todoliste.id}}</span>
