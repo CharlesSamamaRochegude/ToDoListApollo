@@ -20,6 +20,7 @@
     <h2>Details de la todolist : {{todoliste.titre_l | uppercase}}</h2>
     <span>Description : {{todoliste.description}}</span>
     <h4>Listes des différentes taches : </h4>
+
     <div>
       <ul>
         <li *ngFor="let tache of taches">
@@ -35,5 +36,8 @@
       </ul>
     </div>
   </div>
-  
+  <button (click)="onSelect(todoliste)"> Ajouter</button>
+   
+  <app-createur-tache [ToDoListeIDverif] ="todoliste.id_l" [ToDoListeID]="todocrea" ></app-createur-tache>
 </div>
+

@@ -16,6 +16,9 @@ import { tache } from '../tache';
 export class MainComponent {
   @Input() todoliste?: Todoliste;
   @Input() taches?: tache[];
+  ToDoListeID: number | undefined;
+  vrai: boolean = false;
+  todocrea: number | undefined;
 
   liste: Todoliste | undefined;
   tache: tache[] = [];
@@ -25,4 +28,8 @@ export class MainComponent {
     private location: Location,
     private datePipe: DatePipe
   ) { }
+
+  onSelect(todo: Todoliste): void {
+    this.todocrea = todo.id_l;
+  }
 }

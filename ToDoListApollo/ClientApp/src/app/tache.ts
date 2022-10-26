@@ -2,10 +2,11 @@ import { personne } from "./personne";
 
 
 export interface tache {
-  id: number;
-  titre_t: string;
-  date_echeance_l: string | null;
-  id_l: number;
-  ressource: personne | null;
+  id_t: number;
+  Titre_t: string;
+  active_l: boolean;
+  Date_echeance_l: string | null;
+  TodoListId: number;
+  PersonneId: number;
 
 }
