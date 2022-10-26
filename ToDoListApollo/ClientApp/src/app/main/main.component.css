@@ -7,8 +7,8 @@
 }
 #titre
 {
-    flex: none;
-    min-width: 400px;
+    flex: 1;
+    min-width: 215px;
 }
 #date
 {
@@ -21,13 +21,18 @@
 
 #description {
   overflow-y: scroll;
+  flex: auto;
+  text-align: left;
+  word-wrap: break-word;
+  max-height: 10vh;
+  flex:4
 }
-
 #corps
 {
     padding-left: 20px;
 }
-#description {
-  word-wrap: break-word;
-  max-height: 10vh
+
+.tacheChargees{
+    display: flex;
+    border: outset 1px;
 }
