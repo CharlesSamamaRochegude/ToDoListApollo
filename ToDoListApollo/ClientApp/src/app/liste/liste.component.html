@@ -5,7 +5,7 @@
     </div>
 
     <div id="liste">
-      <ul class="listetodoliste">
+      <ul *ngIf="liste" class="listetodoliste">
         <li *ngFor="let todoliste of liste">
           <button (click)="onSelect(todoliste)" class="bouton_liste">
             <div class="info">
