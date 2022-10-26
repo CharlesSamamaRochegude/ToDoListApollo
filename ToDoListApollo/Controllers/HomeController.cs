@@ -29,7 +29,6 @@ namespace ToDoListApollo.Controllers
             try
             {
                 var todoliste = ToDoListeViewModel.Transform(todolisteV);
-                /*todoliste.Personne.Add(GetPersonneById(id));*/
                 _context.ToDoListe.Add(todoliste);
                 _context.SaveChanges();
                 _logger.LogTrace("ajouter à la bdd");
@@ -41,7 +40,25 @@ namespace ToDoListApollo.Controllers
                 return NotFound();
             }
         }
-
+        //Ajout d'une nouvelle Tache rattaché à une todoliste
+        [HttpPost("posttache")]
+        public IActionResult AjouterTache([FromBody] TacheViewModel tache)
+        {
+            try
+            {
+                var tachev = TacheViewModel.Transform(tache);
+                _context.Tache.Add(tachev);
+                _context.SaveChanges();
+                _logger.LogTrace("ajouter à la bdd");
+                return Ok(tachev.id_t);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+        //Ajout d'une personne à une todolist
         [HttpPost("postajoutpersonne/{id}")]
         public IActionResult AjouterPersonne(long id, [FromBody] List<int> id_p)
         {
@@ -56,6 +73,46 @@ namespace ToDoListApollo.Controllers
                 {
                     todo.Personne.Add(GetPersonneById(item));
                 }
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+
+        //Ajout d'une personne à une tache
+        [HttpPost("postajoutpersonnetache/{id}")]
+        public IActionResult AjouterPersonneTache(int id, [FromBody] int id_p)
+        {
+            try
+            {
+                Tache tache = GetTacheById(id);
+
+                tache.PersonneId = id_p;
+                
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+        //ajout d'une todolist à une tache
+        [HttpPost("postajoutlistetache/{id}")]
+        public IActionResult AjouterTodoListTache(int id, [FromBody] int id_l)
+        {
+            try
+            {
+                Tache tache = GetTacheById(id);
+
+                tache.TodoListId = id_l;
+
                 _context.SaveChanges();
                 return Ok();
             }

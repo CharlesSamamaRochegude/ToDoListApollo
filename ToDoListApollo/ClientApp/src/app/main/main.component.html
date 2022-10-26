@@ -22,9 +22,12 @@
     <h4>Listes des différentes taches : </h4>
     <ul>
       <li *ngFor="let tache of taches">
-        <p> Titre :{{tache.titre_t}}</p>
+        <p> Titre :{{tache.Titre_t}}</p>
       </li>
     </ul>
   </div>
-  
+  <button (click)="onSelect(todoliste)"> Ajouter</button>
+   
+  <app-createur-tache [ToDoListeIDverif] ="todoliste.id_l" [ToDoListeID]="todocrea" ></app-createur-tache>
 </div>
+
