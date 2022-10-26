@@ -119,8 +119,8 @@ namespace ToDoListApollo.Migrations
                     b.Property<int>("Active_l")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date_echeance_l")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("Date_echeance_l")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
                         .HasMaxLength(300)
@@ -140,7 +140,6 @@ namespace ToDoListApollo.Migrations
                         {
                             id_l = 1L,
                             Active_l = 0,
-                            Date_echeance_l = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Titre_l = "Titre"
                         });
                 });

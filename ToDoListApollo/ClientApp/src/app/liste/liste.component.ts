@@ -32,7 +32,7 @@ export class ListeComponent implements OnInit {
     this.getTACHE();
   }
   gettache(): void {
-    this.http.get<tache[]>(this.baseUrl + 'HomeController1').subscribe(result => {
+    this.http.get<tache[]>(this.baseUrl + 'home').subscribe(result => {
       this.tache = result;
     }, error => console.error(error));
   }

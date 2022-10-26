@@ -21,10 +21,10 @@ export class ListeService {
   }
 
   gettache(): Observable<tache[]> {
-    return this.http.get<tache[]>(this.baseUrl + 'Home');
+    return this.http.get<tache[]>(this.baseUrl + 'home');
   }
   gettache2(): Promise<tache[] | undefined> {
-    return this.http.get<tache[]>(this.baseUrl + 'Home').toPromise();
+    return this.http.get<tache[]>(this.baseUrl + 'home').toPromise();
   }
   getListe(): Observable<Todoliste[]> {
     const liste = of(LISTE);
