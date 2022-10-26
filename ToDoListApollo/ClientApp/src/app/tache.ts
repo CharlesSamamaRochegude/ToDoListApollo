@@ -1,3 +1,4 @@
+import { personne } from "./personne";
 
 
 export interface tache {
@@ -7,6 +8,5 @@ export interface tache {
   Date_echeance_l: string | null;
   TodoListId: number;
   PersonneId: number;
-
 
 }

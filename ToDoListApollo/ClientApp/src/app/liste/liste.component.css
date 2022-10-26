@@ -4,13 +4,13 @@
 }
 
 #actions {
-  min-height: 95px;
+  min-height: 10vh;
   background-color: gray;
 }
 #gauche
 {
     flex:none;
-    min-width: 350px
+    min-width: 350px;
 }
 #droite
 {
@@ -26,6 +26,10 @@ ul
 {
     width: 100%;
     display: flex
+}
+.listetodoliste {
+  max-height: 85vh;
+  overflow-y: scroll;
 }
 
 .info{
