@@ -18,6 +18,7 @@ export class CreateurTacheComponent implements OnInit {
   personnes: personne[] | undefined;
   selected_personnes: personne | undefined;
   id: number | undefined;
+  id_p: number | undefined;
 
   titre?: string;
   date?: string | null;
@@ -36,7 +37,7 @@ export class CreateurTacheComponent implements OnInit {
   onSubmitForm(): void {
     console.log(this.selected_personnes);
     this.http.post<any>(this.baseUrl + 'home/posttache/',
-      { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListeID, PersonneId: this.selected_personnes?.id_p })
+      { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListeID, PersonneId: this.id_p })
       .subscribe();
     console.log(this.titre);
     console.log(this.date);
@@ -48,8 +49,8 @@ export class CreateurTacheComponent implements OnInit {
     }, error => console.error(error));
   }
 
-  onSelect(personne: personne): void {
-    this.selected_personnes = personne;
-    console.log(this.selected_personnes);
+  onSelect(id: number | undefined): void {
+    this.id_p = id;
+    console.log(this.id_p);
   }
 }

@@ -53,8 +53,9 @@ export class CreateurListeComponent implements OnInit {
     }, error => console.error(error));
   }
   onSelect(personne: personne): void {
-    this.selected_personnes.push(personne);
-    
+    if (!this.selected_personnes.includes(personne)) {
+      this.selected_personnes.push(personne);
+    }
   }
 
   getpersonneId():number  {

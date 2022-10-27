@@ -8,8 +8,8 @@
     <input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" />
     <br />
     <label for="util">Personnes : </label>
-    <select name="selected_personnes" id="selected_personnes" >
-      <option *ngFor="let personne of personnes" (change)="onSelect(personne)">{{personne.nom}} {{personne.prenom}}</option>
+    <select [(ngModel)]="id_p" name="selected_personnes" id="selected_personnes" (ngModelChange)="onSelect(id_p)" >
+      <option *ngFor="let personne of personnes" [ngValue]="personne.id_p">{{personne.nom}} {{personne.prenom}}</option>
     </select>
     <br><br>
 
