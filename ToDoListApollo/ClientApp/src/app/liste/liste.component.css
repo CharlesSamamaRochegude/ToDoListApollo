@@ -5,7 +5,8 @@
 
 #actions {
   min-height: 10vh;
-  background-color: gray;
+  background-color: lightgrey;
+  border-bottom: outset 1px;
 }
 #gauche
 {
