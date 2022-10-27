@@ -123,6 +123,44 @@ namespace ToDoListApollo.Controllers
             }
         }
 
+        //activation d'une todoliste
+        [HttpPost("postactivationtodo")]
+        
+        public IActionResult ActivationToDoListe(int active,int id)
+        {
+            try
+            {
+                ToDoListe toDoListe = GetToDoListeById(id);
+                toDoListe.Active_l= active;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+        //activation d'une tache
+        [HttpPost("postactivationtache/{id}")]
+
+        public IActionResult ActivationTache([FromBody]int active, int id)
+        {
+            try
+            {
+                Tache tache = GetTacheById(id);
+                tache.active_l = active;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
         //Modification d'une ToDoList
         [HttpPost]
         [Route("update")]
