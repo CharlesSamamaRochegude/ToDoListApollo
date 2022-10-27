@@ -25,7 +25,6 @@ export class MainComponent {
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
-  tache: tache[] = [];
 
   constructor(private route: ActivatedRoute,
               private ListeService: ListeService,

@@ -17,41 +17,70 @@
 #slide{
 
 }
-#entete
-{
-    display: flex;
-    min-height: 10vh;
-    background-color: gray;
-    text-align: center;
+#entete {
+  display: flex;
+  max-height: 10vh;
+  min-height: 10vh;
+  background-color: lightgrey;
+  border-bottom: outset 1px;
+  text-align: center;
 }
 #titre
 {
     flex: 1;
     min-width: 215px;
 }
-#date
-{
-    min-width:135px;
-    border-left:double;
-    border-right: double;
-    font-size: 1em;
-    margin-right: 10px
+#date {
+  min-width: 135px;
+  border-left: solid grey 1px;
+  border-right: solid grey 1px;
+  font-size: 1em;
+  margin-right: 10px
 }
 
 #description {
   overflow-y: scroll;
+  scrollbar-width: thin;
   flex: auto;
   text-align: left;
   word-wrap: break-word;
   max-height: 10vh;
-  flex:4
+  flex: 4
 }
 #corps
 {
-    padding-left: 20px;
+    padding: 20px;
+}
+#listeTaches{
+    max-width: 50vw;
+}
+#listeTaches ul{
+    list-style-type: none;
 }
 
-.tacheChargees{
-    display: flex;
-    border: outset 1px;
+.tacheChargees {
+  display: flex;
+  border: outset 1px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px
+}
+.boutonsTaches{
+    width: 90px;
+    flex:1;
+}
+.descriptionTaches {
+  flex: 3;
+}
+.dateTaches{
+    flex:1;
+    font-size: 0.7em;
+    display:flex;
+    line-height: 1em;
+}
+.dateTaches img{
+    margin-right: 5px;
+}
+.ressourceDate{
+    flex:1;
 }

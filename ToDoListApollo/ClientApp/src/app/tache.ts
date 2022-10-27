@@ -6,7 +6,7 @@ export interface tache {
   titre_t: string;
   active_l: number;
   date_echeance_l: string | null;
-  TodoListId: number;
-  PersonneId: number;
+  todoListId: number;
+  personneId: number;
 
 }

@@ -20,8 +20,9 @@
 
 <div *ngIf="todoliste ">
   <div id="corps">
+    <h4>Listes des différentes taches : </h4>
 
-    <div>
+    <div id="listeTaches">
       <ul>
         <li *ngFor="let tache of taches">
           <div class="tacheChargees valeur{{tache.active_l}}">
@@ -38,10 +39,9 @@
         </li>
       </ul>
     </div>
-  </div>
-  <button (click)="onSelect(todoliste)"> Ajouter</button>
-  
+    <button (click)="onSelect(todoliste)"> Ajouter</button>
 
-  <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListeID]="todocrea"></app-createur-tache>
+    <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListeID]="todocrea"></app-createur-tache>
+  </div>
 </div>
 
