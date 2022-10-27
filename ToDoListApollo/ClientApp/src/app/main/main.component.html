@@ -13,6 +13,10 @@
   <div id="description">
     <p *ngIf="todoliste">{{todoliste.description}}</p>
   </div>
+  <div *ngIf="todoliste" id="bouton_active_todo">
+    <button *ngIf="todoliste.active_l==1 " (click)="onSelectActiveToDo(todoliste)"> Désactiver</button>
+    <button *ngIf="todoliste.active_l==0 " (click)="onSelectActiveToDo(todoliste)"> Activer</button>
+  </div>
 </div>
 
 <div *ngIf="todoliste ">

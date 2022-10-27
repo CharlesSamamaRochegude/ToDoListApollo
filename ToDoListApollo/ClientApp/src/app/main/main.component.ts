@@ -22,7 +22,8 @@ export class MainComponent {
   ToDoListeID: number | undefined;
   vrai: boolean = false;
   todocrea: number | undefined;
-  activve: number | undefined;
+  active_desactiv_tache: number | undefined;
+  active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
 
   constructor(private route: ActivatedRoute,
@@ -40,14 +41,29 @@ export class MainComponent {
     this.todocrea = todo.id_l;
   }
 
-  onSelectActive(tache: tache): void {
-    this.activve = tache.active_l + 1;
-    this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.activve ).subscribe();
-    console.log(tache.active_l, tache.id_t);
+  //active/desactive la todoliste
+  onSelectActiveTache(tache: tache): void {
+    if (tache.active_l == 0) {
+      this.active_desactiv_todo = tache.active_l + 1;
+      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + tache.id_t, this.active_desactiv_todo).subscribe();
+    }
+    else {
+      this.active_desactiv_todo = tache.active_l - 1;
+      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + tache.id_t, this.active_desactiv_todo).subscribe();
+    }
   }
-  onSelectDesactive(tache: tache): void {
-    this.activve = tache.active_l - 1;
-    this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.activve).subscribe();
-    console.log(tache.active_l, tache.id_t);
+
+  //active/desactive la todoliste
+  onSelectActiveToDo(todo: Todoliste): void {
+    if (todo.active_l == 0) {
+      this.active_desactiv_todo = todo.active_l + 1;
+      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
+    }
+    else {
+      this.active_desactiv_todo = todo.active_l - 1;
+      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
+    }
+
+
   }
 }

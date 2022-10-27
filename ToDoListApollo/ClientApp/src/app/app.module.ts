@@ -17,6 +17,8 @@ import { MainComponent } from './main/main.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { CreateurListeComponent } from './createur-liste/createur-liste.component';
 import { CreateurTacheComponent } from './createur-tache/createur-tache.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -34,11 +36,13 @@ import { CreateurTacheComponent } from './createur-tache/createur-tache.componen
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatSlideToggleModule,
     RouterModule.forRoot([
       { path: '', component: ListeComponent, pathMatch: 'full' },
       { path: 'details/:id', component: MainComponent },
       { path: 'creation', component: CreateurListeComponent}
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [
     DatePipe,
