@@ -16,9 +16,10 @@ export class ListeComponent implements OnInit {
   liste: Todoliste[] = [];
   http: HttpClient;
   baseUrl: String;
+  active_desactiv_todo: number | undefined;
 
   listeSelectionnee?: Todoliste;
-  tachesListeSelectionnee: tache[] =[];
+  tachesListeSelectionnee: tache[] = [];
 
 
   constructor(private listeService: ListeService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -30,7 +31,7 @@ export class ListeComponent implements OnInit {
     this.getListe();
     console.log("test");
     console.log(this.liste);
-    }
+  }
 
   // Obtention de la liste des todolistes depuis le service listeService
   getListe(): void {
@@ -43,9 +44,12 @@ export class ListeComponent implements OnInit {
       this.tachesListeSelectionnee = result;
       console.log(this.tachesListeSelectionnee);
     }, error => console.error(error));
-    
+
   }
+
+
+
+
+
+
 }
-
-
-

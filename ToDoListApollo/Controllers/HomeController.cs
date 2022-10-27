@@ -124,9 +124,9 @@ namespace ToDoListApollo.Controllers
         }
 
         //activation d'une todoliste
-        [HttpPost("postactivationtodo")]
+        [HttpPost("postactivationtodo/{id}")]
         
-        public IActionResult ActivationToDoListe(int active,int id)
+        public IActionResult ActivationToDoListe([FromBody]int active,int id)
         {
             try
             {
