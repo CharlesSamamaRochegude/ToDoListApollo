@@ -58,6 +58,7 @@
     list-style-type: none;
 }
 
+
 .tacheChargees {
   display: flex;
   border: outset 1px;
@@ -65,10 +66,11 @@
   margin-top: 10px;
   border-radius: 5px
 }
-.boutonsTaches{
-    width: 90px;
-    flex:1;
+.boutonsTaches {
+  width: 90px;
+  flex: 1;
 }
+
 .descriptionTaches {
   flex: 3;
 }

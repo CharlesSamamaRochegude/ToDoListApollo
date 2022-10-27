@@ -26,14 +26,22 @@
       <ul>
         <li *ngFor="let tache of taches">
           <div class="tacheChargees valeur{{tache.active_l}}">
-            <p> {{tache.titre_t}}</p>
-            <time>
-              {{tache.date_echeance_l | date : 'EEEE'}}
-              {{tache.date_echeance_l | date : 'dd'}}
-              {{tache.date_echeance_l | date : 'MMMM'}}
-            </time>
-            <div id="button_active_tache">
-              <mat-slide-toggle  (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 && todoliste.active_l==1"  ></mat-slide-toggle>
+            <div class="descriptionTaches">
+              <p>{{tache.titre_t}} </p>
+            </div>
+            <div class="dateTaches">
+              <img src="../../assets/Calendrier.png" alt="Logo-calendrier" width="33" height="33" />
+              <div>
+                {{tache.date_echeance_l | date : 'EEEE'}} <br>
+                {{tache.date_echeance_l | date : 'dd'}}<br>
+                {{tache.date_echeance_l | date : 'MMMM'}}
+              </div>
+            </div>
+            <div class="boutonsTaches">
+              <mat-slide-toggle (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 && todoliste.active_l==1"></mat-slide-toggle>
+            </div>
+            <div class="ressourceTaches">
+              CS
             </div>
           </div>
         </li>
