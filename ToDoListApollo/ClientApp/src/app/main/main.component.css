@@ -1,3 +1,18 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-) .mat-slide-toggle-bar {
+  background-color: #2C73B9;
+}
+
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #2C73B9;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-ripple .mat-ripple-element {
+  background-color: rgba(29, 135, 229, .2);
+}
+#slide{
+
+}
 #entete
 {
     display: flex;

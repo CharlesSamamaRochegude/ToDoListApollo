@@ -13,13 +13,14 @@
   <div id="description">
     <p *ngIf="todoliste">{{todoliste.description}}</p>
   </div>
+  <div *ngIf="todoliste" id="bouton_active_todo">
+    <button *ngIf="todoliste.active_l==1 " (click)="onSelectActiveToDo(todoliste)"> Désactiver</button>
+    <button *ngIf="todoliste.active_l==0 " (click)="onSelectActiveToDo(todoliste)"> Activer</button>
+  </div>
 </div>
 
 <div *ngIf="todoliste ">
   <div id="corps">
-    <h2>Details de la todolist : {{todoliste.titre_l | uppercase}}</h2>
-    <span>Description : {{todoliste.description}}</span>
-    <h4>Listes des différentes taches : </h4>
 
     <div>
       <ul>
@@ -31,8 +32,11 @@
               {{tache.date_echeance_l | date : 'dd'}}
               {{tache.date_echeance_l | date : 'MMMM'}}
             </time>
-            <button *ngIf="tache.active_l==1 " (click)="onSelectDesactive(tache)"> Désactiver</button>
-            <button *ngIf="tache.active_l==0 " (click)="onSelectActive(tache)"> Activer</button>
+            <div id="button_active_tache">
+              <button *ngIf="tache.active_l==1 && todoliste.active_l==1 " (click)="onSelectActiveTache(tache)"> Désactiver</button>
+              <button *ngIf="tache.active_l==0 || todoliste.active_l==0" (click)="onSelectActiveTache(tache)"> Activer</button>
+              <mat-slide-toggle *ngIf="tache.active_l==0 || todoliste.active_l==0" (click)="onSelectActiveTache(tache)"  >Slide me!</mat-slide-toggle>
+            </div>
           </div>
         </li>
       </ul>
