@@ -46,11 +46,11 @@ export class MainComponent {
   onSelectActiveTache(tache: tache): void {
     if (tache.active_l == 0) {
       this.active_desactiv_todo = tache.active_l + 1;
-      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + tache.id_t, this.active_desactiv_todo).subscribe();
+      this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
     }
     else {
       this.active_desactiv_todo = tache.active_l - 1;
-      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + tache.id_t, this.active_desactiv_todo).subscribe();
+      this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
     }
   }
 

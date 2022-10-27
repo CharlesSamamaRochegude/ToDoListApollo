@@ -14,8 +14,7 @@
     <p *ngIf="todoliste">{{todoliste.description}}</p>
   </div>
   <div *ngIf="todoliste" id="bouton_active_todo">
-    <button *ngIf="todoliste.active_l==1 " (click)="onSelectActiveToDo(todoliste)"> Désactiver</button>
-    <button *ngIf="todoliste.active_l==0 " (click)="onSelectActiveToDo(todoliste)"> Activer</button>
+    <mat-slide-toggle (change)="onSelectActiveToDo(todoliste)" [checked]="todoliste.active_l==1" ></mat-slide-toggle>
   </div>
 </div>
 
@@ -33,9 +32,7 @@
               {{tache.date_echeance_l | date : 'MMMM'}}
             </time>
             <div id="button_active_tache">
-              <button *ngIf="tache.active_l==1 && todoliste.active_l==1 " (click)="onSelectActiveTache(tache)"> Désactiver</button>
-              <button *ngIf="tache.active_l==0 || todoliste.active_l==0" (click)="onSelectActiveTache(tache)"> Activer</button>
-              <mat-slide-toggle *ngIf="tache.active_l==0 || todoliste.active_l==0" (click)="onSelectActiveTache(tache)"  >Slide me!</mat-slide-toggle>
+              <mat-slide-toggle  (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 && todoliste.active_l==1"  ></mat-slide-toggle>
             </div>
           </div>
         </li>
