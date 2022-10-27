@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<div *ngIf="todoliste">
+<div *ngIf="todoliste ">
   <div id="corps">
     <h4>Listes des différentes taches : </h4>
 
@@ -30,6 +30,10 @@
               {{tache.date_echeance_l | date : 'EEEE'}} <br>
               {{tache.date_echeance_l | date : 'dd'}}<br>
               {{tache.date_echeance_l | date : 'MMMM'}}
+            </div>
+            <div>
+              <button *ngIf="tache.active_l==1 " (click)="onSelectDesactive(tache)"> Désactiver</button>
+              <button *ngIf="tache.active_l==0 " (click)="onSelectActive(tache)"> Activer</button>
             </div>
             <div class="ressourceTaches">
               CS
