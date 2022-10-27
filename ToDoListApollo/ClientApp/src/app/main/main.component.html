@@ -39,9 +39,9 @@
               </div>
             </div>
             <div class="boutonsTaches">
-              <button *ngIf="tache.active_l==1 " (click)="onSelectDesactive(tache)"> Désactiver</button>
-              <button *ngIf="tache.active_l==0 " (click)="onSelectActive(tache)"> Activer</button>
-              <mat-slide-toggle></mat-slide-toggle>
+              <button *ngIf="tache.active_l==1 && todoliste.active_l==1 " (click)="onSelectActiveTache(tache)"> Désactiver</button>
+              <button *ngIf="tache.active_l==0 || todoliste.active_l==0" (click)="onSelectActiveTache(tache)"> Activer</button>
+              <mat-slide-toggle *ngIf="tache.active_l==0 || todoliste.active_l==0" >Slide me!</mat-slide-toggle>
             </div>
             <div class="ressourceTaches">
               CS
