@@ -21,7 +21,6 @@ export class MainComponent {
   todocrea: number | undefined;
 
   liste: Todoliste | undefined;
-  tache: tache[] = [];
 
   constructor(private route: ActivatedRoute,
               private ListeService: ListeService,
