@@ -1,5 +1,6 @@
 #entete {
   display: flex;
+  max-height: 10vh;
   min-height: 10vh;
   background-color: lightgrey;
   border-bottom: outset 1px;
@@ -32,7 +33,7 @@
     padding: 20px;
 }
 #listeTaches{
-    max-width: 60vw;
+    max-width: 50vw;
 }
 #listeTaches ul{
     list-style-type: none;
@@ -45,12 +46,21 @@
   margin-top: 10px;
   border-radius: 5px
 }
-.descriptionTaches{
-    flex: 2;
+.boutonsTaches{
+    width: 90px;
+    flex:1;
+}
+.descriptionTaches {
+  flex: 3;
 }
 .dateTaches{
     flex:1;
     font-size: 0.7em;
+    display:flex;
+    line-height: 1em;
+}
+.dateTaches img{
+    margin-right: 5px;
 }
 .ressourceDate{
     flex:1;

@@ -5,13 +5,19 @@
 
 #actions {
   min-height: 10vh;
-  background-color: lightgrey;
+  background-color: #eaeaea;
   border-bottom: outset 1px;
+  border-right: outset 1px;
 }
-#gauche
-{
-    flex:none;
-    min-width: 350px;
+#gauche {
+  flex: none;
+  min-width: 350px;
+  height: 95vh;
+}
+#liste {
+  height: 85vh;
+  background-color: lightgray;
+  overflow-y: scroll;
 }
 #droite
 {
@@ -26,11 +32,14 @@ ul
 .bouton_liste
 {
     width: 100%;
-    display: flex
+    display: flex;
+    border: none;
+}
+.bouton_liste:hover{
+    background-color: lightgray;
 }
 .listetodoliste {
   max-height: 85vh;
-  overflow-y: scroll;
 }
 
 .info{
