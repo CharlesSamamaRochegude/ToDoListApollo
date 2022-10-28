@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToDoListApollo.Migrations
 {
-    public partial class InitialeCreate : Migration
+    public partial class longToInt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,11 +27,11 @@ namespace ToDoListApollo.Migrations
                 name: "ToDoListe",
                 columns: table => new
                 {
-                    id_l = table.Column<long>(type: "bigint", nullable: false)
+                    id_l = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titre_l = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Date_echeance_l = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date_echeance_l = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Active_l = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -44,7 +44,7 @@ namespace ToDoListApollo.Migrations
                 columns: table => new
                 {
                     Personneid_p = table.Column<int>(type: "int", nullable: false),
-                    ToDoListesid_l = table.Column<long>(type: "bigint", nullable: false)
+                    ToDoListesid_l = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,20 +69,21 @@ namespace ToDoListApollo.Migrations
                 {
                     id_t = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titre_t = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Titre_t = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     active_l = table.Column<int>(type: "int", nullable: false),
                     Date_echeance_l = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TodoListId = table.Column<long>(type: "bigint", nullable: false),
-                    Personneid_p = table.Column<int>(type: "int", nullable: true)
+                    TodoListId = table.Column<int>(type: "int", nullable: false),
+                    PersonneId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tache", x => x.id_t);
                     table.ForeignKey(
-                        name: "FK_Tache_Personne_Personneid_p",
-                        column: x => x.Personneid_p,
+                        name: "FK_Tache_Personne_PersonneId",
+                        column: x => x.PersonneId,
                         principalTable: "Personne",
-                        principalColumn: "id_p");
+                        principalColumn: "id_p",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tache_ToDoListe_TodoListId",
                         column: x => x.TodoListId,
@@ -104,7 +105,7 @@ namespace ToDoListApollo.Migrations
             migrationBuilder.InsertData(
                 table: "ToDoListe",
                 columns: new[] { "id_l", "Active_l", "Date_echeance_l", "Description", "Titre_l" },
-                values: new object[] { 1L, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Titre" });
+                values: new object[] { 1, 0, null, null, "Titre" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonneToDoListe_ToDoListesid_l",
@@ -112,9 +113,9 @@ namespace ToDoListApollo.Migrations
                 column: "ToDoListesid_l");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tache_Personneid_p",
+                name: "IX_Tache_PersonneId",
                 table: "Tache",
-                column: "Personneid_p");
+                column: "PersonneId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tache_TodoListId",
