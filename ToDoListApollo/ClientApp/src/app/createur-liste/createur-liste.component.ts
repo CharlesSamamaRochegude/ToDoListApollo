@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Location, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { personne } from '../personne';
 
 
@@ -22,7 +23,7 @@ export class CreateurListeComponent implements OnInit {
   id: number | undefined;
   
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private datePipe: DatePipe, private location: Location) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private datePipe: DatePipe, private location: Location, private router: Router) { 
     this.http = http;
     this.baseUrl = baseUrl
 }
@@ -40,12 +41,9 @@ export class CreateurListeComponent implements OnInit {
         this.http.post<any>(this.baseUrl + 'home/postajoutpersonne/'+this.id, this.selected_personnes.map(p => p.id_p) ).subscribe();
 
         }, error => console.error(error));
-
-
-    
     console.log(this.titre);
     console.log(this.date);
-    this.location.back();
+    this.router.navigateByUrl('/');
   }
   getpersonnes(): void {
     this.http.get<personne[]>(this.baseUrl + 'home/listpersonne').subscribe(result => {
