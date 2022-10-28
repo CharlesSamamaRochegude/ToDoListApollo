@@ -14,7 +14,7 @@ namespace ToDoListApollo
 
         public DateTime Date_echeance_l { get; set; }
 
-        public long TodoListId { get; set; }
+        public int TodoListId { get; set; }
 
         public int PersonneId { get; set; }
 

@@ -27,8 +27,8 @@ namespace ToDoListApollo.Migrations
                     b.Property<int>("Personneid_p")
                         .HasColumnType("int");
 
-                    b.Property<long>("ToDoListesid_l")
-                        .HasColumnType("bigint");
+                    b.Property<int>("ToDoListesid_l")
+                        .HasColumnType("int");
 
                     b.HasKey("Personneid_p", "ToDoListesid_l");
 
@@ -93,8 +93,8 @@ namespace ToDoListApollo.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<long>("TodoListId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TodoListId")
+                        .HasColumnType("int");
 
                     b.Property<int>("active_l")
                         .HasColumnType("int");
@@ -110,11 +110,11 @@ namespace ToDoListApollo.Migrations
 
             modelBuilder.Entity("ToDoListApollo.ToDoListe", b =>
                 {
-                    b.Property<long>("id_l")
+                    b.Property<int>("id_l")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_l"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_l"), 1L, 1);
 
                     b.Property<int>("Active_l")
                         .HasColumnType("int");
@@ -138,7 +138,7 @@ namespace ToDoListApollo.Migrations
                     b.HasData(
                         new
                         {
-                            id_l = 1L,
+                            id_l = 1,
                             Active_l = 0,
                             Titre_l = "Titre"
                         });

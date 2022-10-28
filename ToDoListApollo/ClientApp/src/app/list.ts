@@ -8,6 +8,6 @@ export interface Todoliste {
   description: string | undefined;
   date_echeance_l: string | null ;
   active_l: number;
-  taches: tache[];
-  personnes: personne[];
+  tache: tache[];
+  personne: personne[];
 }
