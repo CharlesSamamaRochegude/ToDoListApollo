@@ -29,8 +29,6 @@ export class ListeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListe();
-    console.log("test");
-    console.log(this.liste);
   }
 
   // Obtention de la liste des todolistes depuis le service listeService
@@ -42,7 +40,6 @@ export class ListeComponent implements OnInit {
     this.listeSelectionnee = todoliste;
     this.listeService.gettache(todoliste.id_l).subscribe(result => {
       this.tachesListeSelectionnee = result;
-      console.log(this.listeSelectionnee);
     }, error => console.error(error));
 
   }
