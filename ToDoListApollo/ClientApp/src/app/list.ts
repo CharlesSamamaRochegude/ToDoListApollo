@@ -10,4 +10,5 @@ export interface Todoliste {
   active_l: number;
   tache: tache[];
   personne: personne[];
+  personneViewModel: personne[];
 }
