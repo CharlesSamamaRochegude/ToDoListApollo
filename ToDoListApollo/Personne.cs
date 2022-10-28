@@ -13,8 +13,8 @@ namespace ToDoListApollo
         [Key]
         public int id_p { get; set; }
 
-        public ICollection<ToDoListe>? ToDoListes { get; set; }
+        public virtual ICollection<ToDoListe> ToDoListes { get; set; }
 
-        public ICollection<Tache>? Tache { get; set; }
+        public virtual ICollection<Tache> Tache { get; set; }
     }
 }

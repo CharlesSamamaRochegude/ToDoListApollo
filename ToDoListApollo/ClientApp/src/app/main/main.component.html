@@ -47,6 +47,10 @@
         </li>
       </ul>
     </div>
+    <div>
+      <h4> Personnes Rattachés</h4>
+      <div *ngFor="let personne of todoliste.personne"> {{personne}}</div>
+    </div>
     <button (click)="onSelect(todoliste)"> Ajouter</button>
 
     <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListeID]="todocrea"></app-createur-tache>

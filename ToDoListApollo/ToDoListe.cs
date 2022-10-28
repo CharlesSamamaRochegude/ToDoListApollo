@@ -6,7 +6,7 @@ namespace ToDoListApollo
     public class ToDoListe
     {
         [Key]
-        public long id_l { get; set; }
+        public int id_l { get; set; }
 
         [Required,MaxLength(50,ErrorMessage = "Titre must be 50 characters or less")]
         public String? Titre_l { get; set; }
@@ -19,9 +19,9 @@ namespace ToDoListApollo
         [IntegerValidator(MinValue = 0, MaxValue = 1,ExcludeRange = true)]
         public int Active_l { get; set; }
 
-        public ICollection<Personne> Personne { get; set; }
+        public virtual ICollection<Personne> Personne { get; set; }
 
-        public ICollection<Tache>? Tache { get; set; }
+        public virtual ICollection<Tache> Tache { get; set; }
 
     }
 }
