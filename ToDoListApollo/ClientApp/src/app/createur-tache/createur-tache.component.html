@@ -1,20 +1,21 @@
-<div *ngIf="ToDoListeID==ToDoListeIDverif">
-  <h1>Création de Tache</h1>
-  <form (ngSubmit)="onSubmitForm()">
-    <label for="titre">Titre : </label>
-    <input type="text" name="titre" value="" [(ngModel)]="titre" required />
-    <br />
-    <label for="date">Date : </label>
-    <input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" />
-    <br />
-    <label for="util">Personnes : </label>
-    <select [(ngModel)]="id_p" name="selected_personnes" id="selected_personnes" (ngModelChange)="onSelect(id_p)" >
-      <option *ngFor="let personne of personnes" [ngValue]="personne.id_p">{{personne.nom}} {{personne.prenom}}</option>
-    </select>
-    <br><br>
+<div *ngIf="ToDoListe">
+  <div *ngIf="ToDoListe.id_l==ToDoListeIDverif">
+    <h1>Création de Tache</h1>
+    <form (ngSubmit)="onSubmitForm()">
+      <label for="titre">Titre : </label>
+      <input type="text" name="titre" value="" [(ngModel)]="titre" required />
+      <br />
+      <label for="date">Date : </label>
+      <input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" />
+      <br />
+      <label for="util">Personnes : </label>
+      <select [(ngModel)]="id_p" name="selected_personnes" id="selected_personnes" (ngModelChange)="onSelect(id_p)">
+        <option *ngFor="let personne of personnes" [ngValue]="personne.id_p">{{personne.nom}} {{personne.prenom}}</option>
+      </select>
+      <br><br>
 
-    <button type="submit">Créer</button>
-  </form>
+      <button type="submit">Créer</button>
+    </form>
 
+  </div>
 </div>
-
