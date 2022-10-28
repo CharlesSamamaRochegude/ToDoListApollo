@@ -12,7 +12,6 @@ namespace ToDoListApollo
         [Key]
         public int id_t { get; set; }
 
-        [IntegerValidator(MinValue = 0, MaxValue = 1, ExcludeRange = true)]
         public int active_l { get; set; }
 
         public DateTime Date_echeance_l { get; set; }

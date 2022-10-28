@@ -9,7 +9,6 @@ namespace ToDoListApollo
         [Required, MaxLength(200, ErrorMessage = "Titre must be 50 characters or less")]
         public string Titre_t { get; set; }
 
-        [IntegerValidator(MinValue = 0, MaxValue = 1, ExcludeRange = true)]
         public int active_l { get; set; }
 
         public DateTime Date_echeance_l { get; set; }

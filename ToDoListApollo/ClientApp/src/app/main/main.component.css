@@ -14,9 +14,8 @@
 .mat-slide-toggle.mat-checked .mat-slide-toggle-ripple .mat-ripple-element {
   background-color: rgba(29, 135, 229, .2);
 }
-#slide{
 
-}
+
 #entete {
   display: flex;
   max-height: 10vh;
@@ -37,7 +36,6 @@
   font-size: 1em;
   margin-right: 10px
 }
-
 #description {
   overflow-y: scroll;
   scrollbar-width: thin;
@@ -47,42 +45,58 @@
   max-height: 10vh;
   flex: 4
 }
-#corps
-{
-    padding: 20px;
-}
-#listeTaches{
-    max-width: 50vw;
-}
-#listeTaches ul{
-    list-style-type: none;
-}
 
 
-.tacheChargees {
+
+#corps {
   display: flex;
-  border: outset 1px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px
+  padding: 20px;
 }
-.boutonsTaches {
-  width: 90px;
-  flex: 1;
+#corps_gauche {
+  flex: 4;
 }
+  #listeTaches{
+    max-width: 100%;
+  }
+    #listeTaches ul{
+      list-style-type: none;
+    }
+    .tacheChargees {
+      display: flex;
+      border: outset 1px;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      min-width: 45vw;
+    }
+      .boutonsTaches {
+        width: 90px;
+        flex: 1;
+      }
+      .dateTaches img{
+        margin-right: 5px;
+      }
+      .dateTaches{
+        flex:1;
+        font-size: 0.7em;
+        display:flex;
+        line-height: 1em;
+      }
+      .ressourceDate{
+        flex:1;
+      }
+      .descriptionTaches {
+        flex: 3;
+      }
 
-.descriptionTaches {
-  flex: 3;
+
+
+#corps_droit {
+  margin-left: 30px;
+    flex: 4;
 }
-.dateTaches{
-    flex:1;
-    font-size: 0.7em;
-    display:flex;
-    line-height: 1em;
-}
-.dateTaches img{
-    margin-right: 5px;
-}
-.ressourceDate{
-    flex:1;
-}
+  #Personnes_Rattaches {
+      min-width: 40px;
+  }
+
+
