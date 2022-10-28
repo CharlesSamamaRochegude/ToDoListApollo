@@ -21,25 +21,23 @@ export class MainComponent {
   baseUrl: String;
   ToDoListeID: number | undefined;
   vrai: boolean = false;
-  todocrea: number | undefined;
+  todocrea: Todoliste | undefined;
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
 
   constructor(private route: ActivatedRoute,
               private ListeService: ListeService,
-    private location: Location,
-    private datePipe: DatePipe,
-    private HttpClient: HttpClient,
-    @Inject('BASE_URL') baseUrl: string
-  ) {
+              private location: Location,
+              private datePipe: DatePipe,
+              private HttpClient: HttpClient,
+              @Inject('BASE_URL') baseUrl: string) {
     this.http = HttpClient;
     this.baseUrl = baseUrl;
   }
 
   onSelect(todo: Todoliste): void {
-    this.todocrea = todo.id_l;
-    console.log(this.todoliste);
+    this.todocrea = todo;
   }
 
   //active/desactive la todoliste
