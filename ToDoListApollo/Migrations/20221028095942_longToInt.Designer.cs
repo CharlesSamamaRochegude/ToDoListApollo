@@ -12,8 +12,8 @@ using ToDoListApollo;
 namespace ToDoListApollo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221026084520_TacheChangementTitreToDoChangementPersonne")]
-    partial class TacheChangementTitreToDoChangementPersonne
+    [Migration("20221028095942_longToInt")]
+    partial class longToInt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,8 @@ namespace ToDoListApollo.Migrations
                     b.Property<int>("Personneid_p")
                         .HasColumnType("int");
 
-                    b.Property<long>("ToDoListesid_l")
-                        .HasColumnType("bigint");
+                    b.Property<int>("ToDoListesid_l")
+                        .HasColumnType("int");
 
                     b.HasKey("Personneid_p", "ToDoListesid_l");
 
@@ -87,7 +87,7 @@ namespace ToDoListApollo.Migrations
                     b.Property<DateTime>("Date_echeance_l")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Personneid_p")
+                    b.Property<int>("PersonneId")
                         .HasColumnType("int");
 
                     b.Property<string>("Titre_t")
@@ -95,15 +95,15 @@ namespace ToDoListApollo.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<long>("TodoListId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TodoListId")
+                        .HasColumnType("int");
 
                     b.Property<int>("active_l")
                         .HasColumnType("int");
 
                     b.HasKey("id_t");
 
-                    b.HasIndex("Personneid_p");
+                    b.HasIndex("PersonneId");
 
                     b.HasIndex("TodoListId");
 
@@ -112,11 +112,11 @@ namespace ToDoListApollo.Migrations
 
             modelBuilder.Entity("ToDoListApollo.ToDoListe", b =>
                 {
-                    b.Property<long>("id_l")
+                    b.Property<int>("id_l")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id_l"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_l"), 1L, 1);
 
                     b.Property<int>("Active_l")
                         .HasColumnType("int");
@@ -140,7 +140,7 @@ namespace ToDoListApollo.Migrations
                     b.HasData(
                         new
                         {
-                            id_l = 1L,
+                            id_l = 1,
                             Active_l = 0,
                             Titre_l = "Titre"
                         });
@@ -163,15 +163,19 @@ namespace ToDoListApollo.Migrations
 
             modelBuilder.Entity("ToDoListApollo.Tache", b =>
                 {
-                    b.HasOne("ToDoListApollo.Personne", null)
+                    b.HasOne("ToDoListApollo.Personne", "Personne")
                         .WithMany("Tache")
-                        .HasForeignKey("Personneid_p");
+                        .HasForeignKey("PersonneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ToDoListApollo.ToDoListe", "ToDoListe")
                         .WithMany("Tache")
                         .HasForeignKey("TodoListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Personne");
 
                     b.Navigation("ToDoListe");
                 });

@@ -18,7 +18,7 @@ namespace ToDoListApollo
         public DateTime Date_echeance_l { get; set; }
 
         [ForeignKey(nameof(ToDoListe))]
-        public long TodoListId { get; set; }
+        public int TodoListId { get; set; }
         
         public ToDoListe? ToDoListe { get; set; }
 
