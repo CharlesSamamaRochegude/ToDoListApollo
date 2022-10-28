@@ -42,7 +42,7 @@ export class ListeComponent implements OnInit {
     this.listeSelectionnee = todoliste;
     this.listeService.gettache(todoliste.id_l).subscribe(result => {
       this.tachesListeSelectionnee = result;
-      console.log(this.tachesListeSelectionnee);
+      console.log(this.listeSelectionnee);
     }, error => console.error(error));
 
   }

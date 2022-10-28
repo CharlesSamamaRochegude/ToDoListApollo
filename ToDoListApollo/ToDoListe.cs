@@ -19,9 +19,9 @@ namespace ToDoListApollo
         [IntegerValidator(MinValue = 0, MaxValue = 1,ExcludeRange = true)]
         public int Active_l { get; set; }
 
-        public ICollection<Personne> Personne { get; set; }
+        public virtual ICollection<Personne> Personne { get; set; }
 
-        public ICollection<Tache>? Tache { get; set; }
+        public virtual ICollection<Tache> Tache { get; set; }
 
     }
 }

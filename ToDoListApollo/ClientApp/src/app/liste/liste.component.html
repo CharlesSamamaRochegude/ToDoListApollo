@@ -9,7 +9,7 @@
         <li *ngFor="let todoliste of liste">
           <button (click)="onSelect(todoliste)" class="bouton_liste">
             <div class="info">
-              <h5 class="titre">{{todoliste.titre_l}}</h5>
+              <h4 class="titre">{{todoliste.titre_l}}</h4>
               <p class="desc">{{todoliste.description | slice:0:100}}...</p>
             </div>
             <div class="utili">{{todoliste.id_l}}</div>

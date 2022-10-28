@@ -226,6 +226,15 @@ namespace ToDoListApollo.Controllers
             return AfficherToDoListes();
         }
 
+        //Affichage de l'ensemble des ToDoListes en asynchrone
+        [HttpGet]
+        [Route("listasync")]
+
+        public Task<List<ToDoListe>> GetToDoListesAsync()
+        {
+            return AfficherToDoListesAsync();
+        }
+
         //Affichage des ToDoListes qui m'appartiennent
         [HttpGet("listByUserId")]
         public IEnumerable<ToDoListe> GetToDoListesByUserID(int id)
@@ -241,16 +250,6 @@ namespace ToDoListApollo.Controllers
             return _context.Tache.Where(t => t.TodoListId == id).ToList();
         }
 
-
-
-        //Affichage de l'ensemble des ToDoListes en asynchrone
-        [HttpGet]
-        [Route("listasync")]
-
-        public Task<List<ToDoListe>> GetToDoListesAsync()
-        {
-            return AfficherToDoListesAsync();
-        }
         [HttpGet("listpersonne")]
 
         //Renvoie la liste des utilisateurs
@@ -271,7 +270,8 @@ namespace ToDoListApollo.Controllers
         }
         public List<ToDoListe> AfficherToDoListes()
         {
-            return _context.ToDoListe.ToList();
+            var resu = _context.ToDoListe.Include(p => p.Personne).Include(t=>t.Tache).ToList();
+            return _context.ToDoListe.Include(p=>p.Personne).ToList();
         }
 
         public Task<List<ToDoListe>> AfficherToDoListesAsync()

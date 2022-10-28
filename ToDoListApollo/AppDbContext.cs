@@ -18,6 +18,7 @@ namespace ToDoListApollo
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<ToDoListe>().HasMany(p => p.Personne).WithMany(p => p.ToDoListes).UsingEntity<ToDoListePersonne>();
             modelBuilder.Entity<Personne>().HasData(new List<Personne>()
             {
                 new Personne()
