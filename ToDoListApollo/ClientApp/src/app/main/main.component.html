@@ -20,40 +20,45 @@
 
 <div *ngIf="todoliste ">
   <div id="corps">
-    <h4>Listes des différentes taches : </h4>
+    <div id="corps-gauche">
+      <h3>Listes des différentes taches : </h3>
 
-    <div id="listeTaches">
-      <ul>
-        <li *ngFor="let tache of taches">
-          <div class="tacheChargees valeur{{tache.active_l}}">
-            <div class="descriptionTaches">
-              <p>{{tache.titre_t}} </p>
-            </div>
-            <div class="dateTaches">
-              <img src="../../assets/Calendrier.png" alt="Logo-calendrier" width="33" height="33" />
-              <div>
-                {{tache.date_echeance_l | date : 'EEEE'}} <br>
-                {{tache.date_echeance_l | date : 'dd'}}<br>
-                {{tache.date_echeance_l | date : 'MMMM'}}
+      <div id="listeTaches">
+        <ul>
+          <li *ngFor="let tache of taches">
+            <div class="tacheChargees valeur{{tache.active_l}}">
+              <div class="descriptionTaches">
+                <p>{{tache.titre_t}} </p>
+              </div>
+              <div class="dateTaches">
+                <img src="../../assets/Calendrier.png" alt="Logo-calendrier" width="33" height="33" />
+                <div>
+                  {{tache.date_echeance_l | date : 'EEEE'}} <br>
+                  {{tache.date_echeance_l | date : 'dd'}}<br>
+                  {{tache.date_echeance_l | date : 'MMMM'}}
+                </div>
+              </div>
+              <div class="boutonsTaches">
+                <mat-slide-toggle (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 && todoliste.active_l==1"></mat-slide-toggle>
+              </div>
+              <div class="ressourceTaches">
+                CS
               </div>
             </div>
-            <div class="boutonsTaches">
-              <mat-slide-toggle (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 && todoliste.active_l==1"></mat-slide-toggle>
-            </div>
-            <div class="ressourceTaches">
-              CS
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h4> Personnes Rattachés</h4>
-      <div *ngFor="let personne of todoliste.personne"> {{personne}}</div>
-    </div>
-    <button (click)="onSelect(todoliste)"> Ajouter</button>
 
-    <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListeID]="todocrea"></app-createur-tache>
+    <div id="corps_droit">
+      <div id="Personnes_Rattaches">
+        <h3> Personnes Rattachés</h3>
+        <div *ngFor="let personne of todoliste.personneViewModel"> {{personne.nom}} {{personne.prenom}}</div>
+      </div>
+    </div>
+
   </div>
+  <button (click)="onSelect(todoliste)"> Ajouter</button>
+  <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListeID]="todocrea"></app-createur-tache>
 </div>
 

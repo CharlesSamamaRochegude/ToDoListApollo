@@ -39,6 +39,7 @@ export class MainComponent {
 
   onSelect(todo: Todoliste): void {
     this.todocrea = todo.id_l;
+    console.log(this.todoliste);
   }
 
   //active/desactive la todoliste

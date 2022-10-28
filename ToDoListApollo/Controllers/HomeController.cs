@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
@@ -222,9 +222,9 @@ namespace ToDoListApollo.Controllers
 
         //Affichage de l'ensemble des ToDoListes
         [HttpGet("list")]
-        public IEnumerable<ToDoListe> GetToDoListes() {
-            var resu = _context.ToDoListe.Include(t => t.Personne).ToList();
-            return _context.ToDoListe.Include(p => p.Personne).ToList();
+        public IEnumerable<ToDoListeViewModelPersonne> GetToDoListes() {
+            List<ToDoListeViewModelPersonne> var = ToDoListeViewModelPersonne.Transform(_context.ToDoListe.Include(p => p.Personne).ToList());
+            return var;
         }
 
         //Affichage de l'ensemble des ToDoListes en asynchrone
