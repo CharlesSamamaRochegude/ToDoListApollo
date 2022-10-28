@@ -60,7 +60,7 @@ namespace ToDoListApollo.Controllers
         }
         //Ajout d'une personne à une todolist
         [HttpPost("postajoutpersonne/{id}")]
-        public IActionResult AjouterPersonne(long id, [FromBody] List<int> id_p)
+        public IActionResult AjouterPersonne(int id, [FromBody] List<int> id_p)
         {
             try
             {
@@ -164,7 +164,7 @@ namespace ToDoListApollo.Controllers
         //Modification d'une ToDoList
         [HttpPost]
         [Route("update")]
-        public IActionResult ToDoListTerminé(long id)
+        public IActionResult ToDoListTerminé(int id)
         {
             try
             {
@@ -279,7 +279,7 @@ namespace ToDoListApollo.Controllers
             return _context.ToDoListe.ToListAsync();
         }
 
-        public ToDoListe GetToDoListeById(long id)
+        public ToDoListe GetToDoListeById(int id)
         {
             ToDoListe result = _context.ToDoListe.Include(p=>p.Personne).Where(l=>l.id_l ==id).SingleOrDefault();
             return result;
