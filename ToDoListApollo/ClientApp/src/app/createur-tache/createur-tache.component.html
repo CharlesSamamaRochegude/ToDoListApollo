@@ -2,14 +2,14 @@
   <div *ngIf="ToDoListe.id_l==ToDoListeIDverif">
     <h1>Création de Tache</h1>
     <form (ngSubmit)="onSubmitForm()">
-      <label for="titre">Titre : </label>
-      <input type="text" name="titre" value="" [(ngModel)]="titre" required />
+      <label for="titre-crea">Titre : </label>
+      <input type="text" name="titre-crea" value="" [(ngModel)]="titre" required />
       <br />
-      <label for="date">Date : </label>
-      <input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" />
+      <label for="date-crea">Date : </label>
+      <input type="date" name="date-crea" min="{{aujourdhui}}" [(ngModel)]="date" />
       <br />
-      <label for="util">Personnes : </label>
-      <select [(ngModel)]="id_p" name="selected_personnes" id="selected_personnes" (ngModelChange)="onSelect(id_p)">
+      <label for="util-crea">Personnes : </label>
+      <select [(ngModel)]="id_p" name="util-crea" id="selected_personnes" (ngModelChange)="onSelect(id_p)">
         <option *ngFor="let personne of personnes" [ngValue]="personne.id_p">{{personne.nom}} {{personne.prenom}}</option>
       </select>
       <br><br>
