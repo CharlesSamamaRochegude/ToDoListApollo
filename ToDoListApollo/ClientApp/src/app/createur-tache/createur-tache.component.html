@@ -8,7 +8,7 @@
       <label for="date-crea">Date : </label>
       <input type="date" name="date-crea" min="{{aujourdhui}}" [(ngModel)]="date" />
       <br />
-      <label for="util-crea">Personnes : </label>
+      <label for="util-crea">Personne : </label>
       <select [(ngModel)]="id_p" name="util-crea" id="selected_personnes" (ngModelChange)="onSelect(id_p)">
         <option *ngFor="let personne of personnes" [ngValue]="personne.id_p">{{personne.nom}} {{personne.prenom}}</option>
       </select>
