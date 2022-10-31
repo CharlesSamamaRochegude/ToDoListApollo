@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 // Import de nos propres fichiers
 import { Todoliste } from '../list'
 import { ListeService } from '../liste.service';
@@ -26,11 +27,8 @@ export class ListeComponent implements OnInit {
     this.http = http;
     this.baseUrl = baseUrl;
   }
-
   ngOnInit(): void {
     this.getListe();
-    console.log("test");
-    console.log(this.liste);
   }
 
   // Obtention de la liste des todolistes depuis le service listeService
@@ -42,7 +40,6 @@ export class ListeComponent implements OnInit {
     this.listeSelectionnee = todoliste;
     this.listeService.gettache(todoliste.id_l).subscribe(result => {
       this.tachesListeSelectionnee = result;
-      console.log(this.listeSelectionnee);
     }, error => console.error(error));
 
   }

@@ -1,21 +1,38 @@
-<h1>Création de Todoliste</h1>
-<form (ngSubmit)="onSubmitForm()">
-  <label for="titre">Titre : </label>
-  <input type="text" name="titre" value="" [(ngModel)]="titre" required/>
-  <br />
-  <label for="desc">Description : </label>
-  <input type="text" name="desc" value="" [(ngModel)]="description" />
-  <br />
-  <label for="date">Date : </label>
-  <input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" />
-
-
-  <br />
-  <label for="util">Personnes : </label>
-  <select  name="selected_personnes" id="selected_personnes" multiple >
-    <option *ngFor="let personne of personnes" (click)="onSelect(personne)">{{personne.nom}} {{personne.prenom}}</option>
-  </select>
-  <br><br>
-
-  <button type="submit">Créer</button>
-</form>
+<div class="fenetre-ombree">
+  <h1>Création de Todoliste</h1>
+  <form (ngSubmit)="onSubmitForm()">
+    <table>
+      <tr>
+        <td colspan="2"><label for="titre">Titre : </label></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="text" name="titre" value="" [(ngModel)]="titre" required class="input-long" maxlength="50"/></td>
+      </tr>
+      <tr>
+        <td colspan="2"><label for="desc">Description : </label></td>
+      </tr>
+      <tr>
+        <td colspan="2"><textarea type="text" id="desc" name="desc" value="" [(ngModel)]="description" class="input-long" maxlength="200" rows="4"></textarea></td>
+      </tr>
+      <tr>
+        <td><label for="util">Personnes : </label></td>
+        <td><label for="date">Date : </label></td>
+      </tr>
+      <tr>
+        <td>
+          <select name="selected_personnes" id="selected_personnes" multiple class="input-court">
+            <option *ngFor="let personne of personnes" (click)="onSelect(personne)">{{personne.nom}} {{personne.prenom}}</option>
+          </select>
+        </td>
+        <td><input type="date" name="date" min="{{aujourdhui}}" [(ngModel)]="date" class="input-court" /></td>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Créer</button></td>
+      </tr>
+    </table>
+  </form>
+</div>

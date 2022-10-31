@@ -1,0 +1,20 @@
+.fenetre-ombree {
+  text-align: left;
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 500px;
+  padding: 25px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.fenetre-ombree table{
+  min-width: 100%;
+}
+
+.input-court {
+  width: 80%;
+}
+
+.input-long {
+  width: 100%;
+}
