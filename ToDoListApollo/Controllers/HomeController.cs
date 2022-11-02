@@ -226,11 +226,16 @@ namespace ToDoListApollo.Controllers
         }
 
         //Suppression d'une ToDoList
-        [HttpPost("postdeltodo/")]
+        [HttpPost("postdeltodo/{id}")]
         public IActionResult SupprimerToDoList(int id)
         {
             try
             {
+                List<Tache> variable = _context.Tache.Where(p => p.TodoListId == id).ToList();
+                foreach (var item in variable)
+                {
+                    _context.Tache.Remove(item);
+                }
                 _context.ToDoListe.Remove(_context.ToDoListe.Find(id));
                 _context.SaveChanges();
                 _logger.LogTrace("supprimer de la bdd");
@@ -244,7 +249,7 @@ namespace ToDoListApollo.Controllers
         }
 
         //Suppression d'une tache
-        [HttpPost("postdeltache/")]
+        [HttpPost("postdeltache/{id}")]
         public IActionResult SupprimerTache(int id)
         {
             try
@@ -321,7 +326,6 @@ namespace ToDoListApollo.Controllers
         }
         public IEnumerable<ToDoListe> AfficherToDoListes()
         {
-            var resu = _context.ToDoListe.Include(t => t.Personne).ToList();
             return _context.ToDoListe.Include(p=>p.Personne).ToList();
         }
 
