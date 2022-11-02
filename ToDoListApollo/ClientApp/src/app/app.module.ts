@@ -19,7 +19,8 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
 import { CreateurTacheComponent } from './createur-tache/createur-tache.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModifierTacheComponent } from './modifier-tache/modifier-tache.component';
+import { ModifierListeComponent } from './modifier-liste/modifier-liste.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -33,11 +34,13 @@ import { ModifierTacheComponent } from './modifier-tache/modifier-tache.componen
     CreateurListeComponent,
     CreateurTacheComponent,
     ModifierTacheComponent,
+    ModifierListeComponent,
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatSelectModule,
     MatSlideToggleModule,
     RouterModule.forRoot([
       { path: '', component: ListeComponent, pathMatch: 'full' },

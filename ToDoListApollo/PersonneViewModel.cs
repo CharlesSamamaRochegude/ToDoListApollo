@@ -17,8 +17,6 @@ namespace ToDoListApollo
         [Key]
         public int id_p { get; set; }
 
-        public virtual ICollection<Tache> Tache { get; set; }
-
         public static HashSet<PersonneViewModel> Transform(HashSet<Personne> todoliste)
         {
             HashSet<PersonneViewModel> var = new HashSet<PersonneViewModel>();
@@ -28,12 +26,29 @@ namespace ToDoListApollo
                 {
                     Nom = todo.Nom,
                     Prenom = todo.Prenom,
-                    id_p = todo.id_p,
-                    Tache = todo.Tache
+                    id_p = todo.id_p
                 }
                 );
             }
         return var;
         }
+
+        public static List<Personne> Transforminverse(List<PersonneViewModel> todoliste)
+        {
+            List<Personne> var = new List<Personne>();
+            foreach (var todo in todoliste)
+            {
+                var.Add(new Personne()
+                {
+                    Nom = todo.Nom,
+                    Prenom = todo.Prenom,
+                    id_p = todo.id_p
+                }
+                );
+            }
+            return var;
+        }
+
+
     }
 }

@@ -27,8 +27,9 @@ export class CreateurListeComponent implements OnInit {
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private datePipe: DatePipe, private location: Location, private router: Router) { 
     this.http = http;
-    this.baseUrl = baseUrl
-  }
+    this.baseUrl = baseUrl;
+}
+
   ngOnInit(): void {
     this.date = this.aujourdhui;
     this.getpersonnes();

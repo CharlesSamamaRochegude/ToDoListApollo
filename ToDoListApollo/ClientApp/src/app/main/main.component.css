@@ -45,15 +45,18 @@
   max-height: 10vh;
   flex: 4
 }
+#modiftodo{
+    width:100%;
+}
 
 
 
 #corps {
   display: flex;
   padding: 20px;
+  flex-direction: row-reverse;
 }
 #corps_gauche {
-  flex: 4;
 }
   #listeTaches{
     max-width: 100%;
@@ -92,11 +95,11 @@
 
 
 #corps_droit {
-  margin-left: 30px;
-    flex: 4;
+  margin-left: 15vw;
+
 }
   #Personnes_Rattaches {
-      min-width: 40px;
+      
   }
 
 
