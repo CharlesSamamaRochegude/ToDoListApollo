@@ -47,29 +47,41 @@ export class MainComponent {
     if (tache.active_l == 0) {
       this.active_desactiv_todo = tache.active_l + 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
+      
     }
     else {
       this.active_desactiv_todo = tache.active_l - 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
+     
     }
   }
   //active/desactive la todoliste
   onSelectActiveToDo(todo: Todoliste): void {
     if (todo.active_l == 0) {
       this.active_desactiv_todo = todo.active_l + 1;
-      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
+      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe(result => {
+        window.location.reload();
+      });
     }
     else {
       this.active_desactiv_todo = todo.active_l - 1;
-      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
+      this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe(result => {
+        window.location.reload();
+      });
     }
   }
   onSelectSupprimerToDo(todo: Todoliste): void {
+    this.http.post<any>(this.baseUrl + 'home/postdeltodo/' + todo.id_l, {}).subscribe();
+    window.location.reload();
   }
-  
+
+  onSelectSupprimerTache(todo: tache): void {
+    this.http.post<any>(this.baseUrl + 'home/postdeltache/' + todo.id_t, {}).subscribe();
+    window.location.reload();
+  }
+
   onSelectModifToDo(todo:Todoliste): void {
     this.todolistemodif = todo;
-    console.log(this.todolistemodif);
   }
   ngOnChanges(): void {
     this.todolistemodif = undefined;

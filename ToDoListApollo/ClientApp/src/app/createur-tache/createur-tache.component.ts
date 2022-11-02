@@ -14,7 +14,6 @@ import { personne } from '../personne';
 export class CreateurTacheComponent implements OnInit {
   @Input() ToDoListeIDverif?: number;
   @Input() ToDoListe?: Todoliste;
-  @Input() vrai?: boolean;
   http: HttpClient;
   baseUrl: string;
   personnes: personne[] | undefined;
