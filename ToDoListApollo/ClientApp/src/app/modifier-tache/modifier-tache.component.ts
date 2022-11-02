@@ -24,6 +24,7 @@ export class ModifierTacheComponent implements OnChanges {
   date: string | null;
   ressource: number | null;
   id_p: number | undefined;
+  id: number | undefined;
 
   aujourdhui: string | null = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
@@ -35,6 +36,7 @@ export class ModifierTacheComponent implements OnChanges {
     this.titre = null;
     this.date = null;
     this.ressource = null;
+    this.id = this.Tache?.id_t;
   }
   ngOnChanges(): void {
     this.getPersonnes();
@@ -47,6 +49,8 @@ export class ModifierTacheComponent implements OnChanges {
           if (result.id_p)
           this.ressource = result.id_p;
         }, error => console.error(error));
+      this.id = this.Tache.id_t;
+      this.id_p = this.Tache.personneId;
     }
 
     console.log(this.ressource);
@@ -54,9 +58,10 @@ export class ModifierTacheComponent implements OnChanges {
 
   // Obtention des personnes que l'on peut assigner à la tâche
   getPersonnes(): void {
-    this.http.get<personne[]>(this.baseUrl + 'home/listpersonne').subscribe(result => {
-      this.personnes = result;
-    }, error => console.error(error));
+    //this.http.get<Todoliste[]>(this.baseUrl + 'home/gettodolistebyid/' + this.Tache?.todoListId).subscribe(result => {
+    //  this.personnes = result[0].personneViewModel;
+    //}, error => console.error(error));
+    this.personnes = this.Tache?.todoliste.personneViewModel;
   }
   // Sélection de la personne précise désignée par l'utilisateur
   onSelect(id: number | undefined): void {
@@ -65,8 +70,13 @@ export class ModifierTacheComponent implements OnChanges {
   }
   // lors de l'envoie des données
   onSubmitForm(): void {
-    //this.http.post<any>(this.baseUrl + 'home/posttache/',
-    //  { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
-    //  .subscribe();
+    this.http.post<any>(this.baseUrl + 'home/postmodiftache/' + this.id,
+      {
+        Titre_t: this.titre,
+        Date_echeance_l: this.date,
+        Active_l: 1,
+        TodoListId: 0,
+        PersonneId: this.id_p
+      }).subscribe();
   }
 }

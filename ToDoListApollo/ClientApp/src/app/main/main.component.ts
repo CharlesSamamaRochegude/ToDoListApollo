@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -49,6 +49,8 @@ export class MainComponent {
   }
   // Lors de la pression du bouton d'ajout de tâches
   onSelectModif(tache: tache): void {
+    if(this.todoliste)
+      tache.todoliste = this.todoliste;
     this.tachemodif = tache;
   }
   //active/desactive la todoliste
