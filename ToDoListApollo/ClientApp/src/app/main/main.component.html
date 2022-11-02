@@ -53,6 +53,7 @@
                 </div>
               </div>
               <div class="boutonsTaches">
+
                 <mat-slide-toggle *ngIf="todoliste.active_l==0" disabled  ></mat-slide-toggle>
                 <mat-slide-toggle *ngIf="todoliste.active_l==1" (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 "></mat-slide-toggle>
               </div>
@@ -69,7 +70,8 @@
       </div>
     </div>
   </div>
-  <button (click)="onSelect(todoliste)"> Ajouter</button>
+  <button (click)="onSelectCrea(todoliste)"> Ajouter</button>
   <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListe]="todocrea" *ngIf="todocrea"></app-createur-tache>
+  <app-modifier-tache [Tache]="tachemodif"></app-modifier-tache>
 </div>
 
