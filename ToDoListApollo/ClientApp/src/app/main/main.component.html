@@ -1,25 +1,38 @@
 
 <div id="entete">
-  <div id="titre">
-    <h2 *ngIf="todoliste">{{todoliste.titre_l}}</h2>
+  <div id="titre" *ngIf="todoliste && !todolistemodif">
+    <h2 >{{todoliste.titre_l}}</h2>
   </div>
-  <div id="date">
-    <h4 *ngIf="todoliste">
+  <div id="date" *ngIf="todoliste && !todolistemodif">
+    <h4 >
       {{todoliste.date_echeance_l | date: 'EEEE'}}<br />
       {{todoliste.date_echeance_l | date: 'dd'}}<br />
       {{todoliste.date_echeance_l | date: 'MMMM'}}
     </h4>
   </div>
-  <div id="description">
-    <p *ngIf="todoliste">{{todoliste.description}}</p>
+  <div id="description" *ngIf="todoliste && !todolistemodif">
+    <p >{{todoliste.description}}</p>
   </div>
-  <div *ngIf="todoliste" id="bouton_active_todo">
-    <mat-slide-toggle (change)="onSelectActiveToDo(todoliste)" [checked]="todoliste.active_l==1" ></mat-slide-toggle>
+  <div *ngIf="todoliste && !todolistemodif" id="modifierToDoListe">
+    <input type="image" src="../../assets/icon_edit.png" alt="Logo-edit" width="33" height="33" (click)="onSelectModifToDo(todoliste)" />
+    <input type="image" src="../../assets/suppresion.png" alt="Logo-edit" width="33" height="33" (click)="onSelectSupprimerToDo(todoliste)" />
+  </div>
+  <div *ngIf="todoliste && todolistemodif " id="modiftodo">
+    <app-modifier-liste [ToDoListeModif]="todolistemodif"></app-modifier-liste>
+  </div>
+  <div *ngIf="todoliste && !todolistemodif" id="bouton_active_todo">
+    <mat-slide-toggle (change)="onSelectActiveToDo(todoliste)" [checked]="todoliste.active_l==1"></mat-slide-toggle>
   </div>
 </div>
 
 <div *ngIf="todoliste ">
   <div id="corps">
+    <div id="corps_droit">
+      <div id="Personnes_Rattaches">
+        <h3> Personnes Rattachés</h3>
+        <div *ngFor="let personne of todoliste.personneViewModel"> {{personne.nom}} {{personne.prenom}}</div>
+      </div>
+    </div>
     <div id="corps-gauche">
       <h3>Listes des différentes taches : </h3>
 
@@ -49,14 +62,6 @@
         </ul>
       </div>
     </div>
-
-    <div id="corps_droit">
-      <div id="Personnes_Rattaches">
-        <h3> Personnes Rattachés</h3>
-        <div *ngFor="let personne of todoliste.personneViewModel"> {{personne.nom}} {{personne.prenom}}</div>
-      </div>
-    </div>
-
   </div>
   <button (click)="onSelect(todoliste)"> Ajouter</button>
   <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListeID]="todocrea"></app-createur-tache>

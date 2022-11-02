@@ -19,14 +19,15 @@ export class MainComponent {
   @Input() taches?: tache[];
   http: HttpClient;
   baseUrl: String;
-  ToDoListeID: number | undefined;
   vrai: boolean = false;
   todocrea: number | undefined;
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
+  todolistemodif: Todoliste | undefined;
+  
 
-  constructor(private route: ActivatedRoute,
+  constructor(
               private ListeService: ListeService,
     private location: Location,
     private datePipe: DatePipe,
@@ -66,5 +67,15 @@ export class MainComponent {
     }
 
 
+  }
+  onSelectSupprimerToDo(todo: Todoliste): void {
+  }
+  
+  onSelectModifToDo(todo:Todoliste): void {
+    this.todolistemodif = todo;
+    console.log(this.todolistemodif);
+  }
+  ngOnChanges(): void {
+    this.todolistemodif = undefined;
   }
 }

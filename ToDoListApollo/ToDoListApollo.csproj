@@ -38,12 +38,14 @@
     <None Remove="ClientApp\src\app\Class.cs" />
     <None Remove="ClientApp\src\app\list.ts" />
     <None Remove="ClientApp\src\app\personne.ts" />
+    <None Remove="ClientApp\src\app\PersonneViewModel.ts" />
     <None Remove="ClientApp\ToDoList.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\list.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\personne.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\PersonneViewModel.ts" />
   </ItemGroup>
 
   <ItemGroup>

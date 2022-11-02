@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getBaseUrl } from '../../main';
 
 import { CreateurListeComponent } from './createur-liste.component';
 
@@ -8,7 +10,8 @@ describe('CreateurListeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateurListeComponent ]
+      declarations: [CreateurListeComponent],
+      imports: [HttpClientModule]
     })
     .compileComponents();
 
@@ -17,7 +20,11 @@ describe('CreateurListeComponent', () => {
     fixture.detectChanges();
   });
 
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
+class MainStub {
+
+}
