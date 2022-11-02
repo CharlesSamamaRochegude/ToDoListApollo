@@ -104,6 +104,26 @@ namespace ToDoListApollo.Controllers
             }
         }
 
+        //modification d'une tache
+        [HttpPost("postmodiftache/{id}")]
+        public IActionResult PostModifTache(int id, [FromBody] TacheViewModel tache)
+        {
+            try
+            {
+                Tache _tache = GetTacheById(id);
+                _tache.Titre_t = tache.Titre_t;
+                _tache.active_l = tache.active_l;
+                _tache.Date_echeance_l = tache.Date_echeance_l;
+                _tache.PersonneId = tache.PersonneId;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
 
         //Ajout d'une personne à une tache
         [HttpPost("postajoutpersonnetache/{id}")]
