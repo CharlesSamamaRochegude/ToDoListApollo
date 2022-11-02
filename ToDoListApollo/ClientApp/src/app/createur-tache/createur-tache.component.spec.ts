@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateurTacheComponent } from './createur-tache.component';
@@ -8,7 +9,8 @@ describe('CreateurTacheComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateurTacheComponent ]
+      declarations: [CreateurTacheComponent],
+      imports: [HttpClientModule]
     })
     .compileComponents();
 

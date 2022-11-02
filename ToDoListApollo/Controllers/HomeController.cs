@@ -69,10 +69,31 @@ namespace ToDoListApollo.Controllers
                 {
                     todo.Personne = new List<Personne>();
                 }
+                todo.Personne.Clear();
                 foreach (var item in id_p)
                 {
                     todo.Personne.Add(GetPersonneById(item));
                 }
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound();
+            }
+        }
+
+        //modification d'une todoliste
+        [HttpPost("postmodiftodo/{id}")]
+        public IActionResult ModifToDoList(int id, [FromBody] ToDoListeViewModel todo)
+        {
+            try
+            {
+                ToDoListe _todo = GetToDoListeById(id);
+                _todo.Titre_l = todo.Titre_l;
+                _todo.Description = todo.Description;
+                _todo.Date_echeance_l = todo.Date_echeance_l;
                 _context.SaveChanges();
                 return Ok();
             }
@@ -257,6 +278,15 @@ namespace ToDoListApollo.Controllers
         public IEnumerable<Personne> GetPersonne()
         {
             return Afficher_personnes();
+        }
+
+        [HttpGet("listpersonneviewmodel")]
+
+        //Renvoie la liste des utilisateurs
+        public IEnumerable<PersonneViewModel> GetPersonneviewmodel()
+        {
+           
+            return PersonneViewModel.Transform(_context.Personne.ToHashSet());
         }
         [HttpGet]
 

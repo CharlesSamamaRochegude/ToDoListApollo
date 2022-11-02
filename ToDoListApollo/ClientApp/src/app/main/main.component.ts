@@ -19,15 +19,21 @@ export class MainComponent {
   @Input() taches?: tache[];
   http: HttpClient;
   baseUrl: String;
-  ToDoListeID: number | undefined;
   vrai: boolean = false;
   todocrea: Todoliste | undefined;
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
+  todolistemodif: Todoliste | undefined;
+  
 
-  constructor(private HttpClient: HttpClient,
-              @Inject('BASE_URL') baseUrl: string) {
+  constructor(
+              private ListeService: ListeService,
+    private location: Location,
+    private datePipe: DatePipe,
+    private HttpClient: HttpClient,
+    @Inject('BASE_URL') baseUrl: string
+  ) {
     this.http = HttpClient;
     this.baseUrl = baseUrl;
   }
@@ -57,5 +63,15 @@ export class MainComponent {
       this.active_desactiv_todo = todo.active_l - 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
     }
+  }
+  onSelectSupprimerToDo(todo: Todoliste): void {
+  }
+  
+  onSelectModifToDo(todo:Todoliste): void {
+    this.todolistemodif = todo;
+    console.log(this.todolistemodif);
+  }
+  ngOnChanges(): void {
+    this.todolistemodif = undefined;
   }
 }
