@@ -45,7 +45,6 @@ export class MainComponent {
   // Lors de la pression du bouton d'ajout de tâches
   onSelectModif(tache: tache): void {
     this.tachemodif = tache;
-    console.log(tache);
   }
   //active/desactive la todoliste
   onSelectActiveTache(tache: tache): void {
