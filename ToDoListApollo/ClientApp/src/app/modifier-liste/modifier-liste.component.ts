@@ -49,10 +49,10 @@ export class ModifierListeComponent implements OnInit {
       .subscribe(
         result => {
           this.http.post<any>(this.baseUrl + 'home/postajoutpersonne/' + this.id, this.selected_personnes?.map(p => p.id_p)).subscribe();
-
+          window.location.reload();
         }, error => console.error(error));
     this.ToDoListeModif = undefined;
-    window.location.reload();
+    
   }
   onSelect(personne: personneViewModel): void {
     
