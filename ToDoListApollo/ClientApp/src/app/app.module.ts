@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModifierListeComponent } from './modifier-liste/modifier-liste.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ModifierTacheComponent } from './modifier-tache/modifier-tache.component'
 
 
 @NgModule({
@@ -33,8 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
     UtilisateurComponent,
     CreateurListeComponent,
     CreateurTacheComponent,
-    ModifierTacheComponent,
     ModifierListeComponent,
+    ModifierTacheComponent
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

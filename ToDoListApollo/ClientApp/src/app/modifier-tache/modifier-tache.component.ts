@@ -65,8 +65,8 @@ export class ModifierTacheComponent implements OnChanges {
   }
   // lors de l'envoie des données
   onSubmitForm(): void {
-    this.http.post<any>(this.baseUrl + 'home/posttache/',
-      { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
-      .subscribe();
+    //this.http.post<any>(this.baseUrl + 'home/posttache/',
+    //  { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
+    //  .subscribe();
   }
 }
