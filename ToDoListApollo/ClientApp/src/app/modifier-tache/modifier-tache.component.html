@@ -1,0 +1,17 @@
+<div *ngIf="Tache">
+  <h1>Modification de tâche</h1>
+  <form (ngSubmit)="onSubmitForm()">
+    <label for="titre-modif">Titre :</label>
+    <input type="text" name="titre-modif" value="" />
+    <br />
+    <label for="date-modif">Date :</label>
+    <input type="date" name="date-modif" value="" />
+    <br />
+    <label for="util-modif">Personne :</label>
+    <select [(ngModel)]="id_p" name="util-modif" id="selected_personnes" (ngModelChange)="onSelect(id_p)">
+      <option *ngFor="let personne of personnes" [ngValue]="personne.id_p">{{personne.nom}} {{personne.prenom}}</option>
+    </select>
+    <br />
+    <br />
+  </form>
+</div>
