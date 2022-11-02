@@ -19,6 +19,7 @@ import { CreateurListeComponent } from './createur-liste/createur-liste.componen
 import { CreateurTacheComponent } from './createur-tache/createur-tache.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModifierTacheComponent } from './modifier-tache/modifier-tache.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UtilisateurComponent,
     CreateurListeComponent,
     CreateurTacheComponent,
+    ModifierTacheComponent,
   ],
   imports: [ 
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
