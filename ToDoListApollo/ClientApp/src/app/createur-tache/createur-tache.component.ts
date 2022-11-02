@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
+
+// Import de nos propres fichiers
 import { Todoliste } from '../list';
 import { personne } from '../personne';
 
@@ -11,7 +13,7 @@ import { personne } from '../personne';
 })
 export class CreateurTacheComponent implements OnInit {
   @Input() ToDoListeIDverif?: number;
-  @Input() ToDoListeID?: number;
+  @Input() ToDoListe?: Todoliste;
   @Input() vrai?: boolean;
   http: HttpClient;
   baseUrl: string;
@@ -28,29 +30,28 @@ export class CreateurTacheComponent implements OnInit {
     this.http = http;
     this.baseUrl = baseUrl;
   }
-
   ngOnInit(): void {
     this.getpersonnes();
-    this.date = this.aujourdhui;
+    if (this.ToDoListe) {
+      this.date = this.ToDoListe.date_echeance_l?.slice(0, 10);
+    }
   }
 
-  onSubmitForm(): void {
-    console.log(this.selected_personnes);
-    this.http.post<any>(this.baseUrl + 'home/posttache/',
-      { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListeID, PersonneId: this.id_p })
-      .subscribe();
-    console.log(this.titre);
-    console.log(this.date);
-  }
-  
+  // Obtention des personnes que l'on peut assigner à la tâche
   getpersonnes(): void {
     this.http.get<personne[]>(this.baseUrl + 'home/listpersonne').subscribe(result => {
       this.personnes = result;
     }, error => console.error(error));
   }
-
+  // Sélection de la personne précise désignée par l'utilisateur
   onSelect(id: number | undefined): void {
     this.id_p = id;
     console.log(this.id_p);
+  }
+  // Méthode d'envoie à la complétion du formulaire
+  onSubmitForm(): void {
+    this.http.post<any>(this.baseUrl + 'home/posttache/',
+      { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
+      .subscribe();
   }
 }

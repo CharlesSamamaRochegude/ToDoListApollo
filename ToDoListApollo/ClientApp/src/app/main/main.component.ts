@@ -1,12 +1,12 @@
 import { Component, Inject, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 // Import de nos propres fichiers
 import { ListeService } from '../liste.service';
 import { Todoliste } from '../list';
 import { tache } from '../tache';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +20,7 @@ export class MainComponent {
   http: HttpClient;
   baseUrl: String;
   vrai: boolean = false;
-  todocrea: number | undefined;
+  todocrea: Todoliste | undefined;
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
@@ -38,11 +38,10 @@ export class MainComponent {
     this.baseUrl = baseUrl;
   }
 
+  // Lors de la pression du bouton d'ajout de tâches
   onSelect(todo: Todoliste): void {
-    this.todocrea = todo.id_l;
-    console.log(this.todoliste);
+    this.todocrea = todo;
   }
-
   //active/desactive la todoliste
   onSelectActiveTache(tache: tache): void {
     if (tache.active_l == 0) {
@@ -54,7 +53,6 @@ export class MainComponent {
       this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
     }
   }
-
   //active/desactive la todoliste
   onSelectActiveToDo(todo: Todoliste): void {
     if (todo.active_l == 0) {
@@ -65,8 +63,6 @@ export class MainComponent {
       this.active_desactiv_todo = todo.active_l - 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
     }
-
-
   }
   onSelectSupprimerToDo(todo: Todoliste): void {
   }
