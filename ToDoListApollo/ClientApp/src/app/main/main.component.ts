@@ -22,19 +22,30 @@ export class MainComponent {
   ToDoListeID: number | undefined;
   vrai: boolean = false;
   todocrea: Todoliste | undefined;
+  tachemodif: tache | undefined;
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
 
+
   constructor(private HttpClient: HttpClient,
-              @Inject('BASE_URL') baseUrl: string) {
+    @Inject('BASE_URL') baseUrl: string) {
     this.http = HttpClient;
     this.baseUrl = baseUrl;
   }
 
   // Lors de la pression du bouton d'ajout de tâches
-  onSelect(todo: Todoliste): void {
-    this.todocrea = todo;
+  onSelectCrea(todo: Todoliste): void {
+    if (this.todocrea != null) {
+      this.todocrea = undefined;
+    } else {
+      this.todocrea = todo;
+    }
+  }
+  // Lors de la pression du bouton d'ajout de tâches
+  onSelectModif(tache: tache): void {
+    this.tachemodif = tache;
+    console.log(tache);
   }
   //active/desactive la todoliste
   onSelectActiveTache(tache: tache): void {
@@ -57,5 +68,10 @@ export class MainComponent {
       this.active_desactiv_todo = todo.active_l - 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtodo/' + todo.id_l, this.active_desactiv_todo).subscribe();
     }
+  }
+
+  // Refresh form
+  refreshForm(): void {
+    this.todocrea = undefined;
   }
 }
