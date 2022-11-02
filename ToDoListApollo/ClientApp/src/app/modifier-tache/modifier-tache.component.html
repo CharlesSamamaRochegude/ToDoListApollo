@@ -2,7 +2,7 @@
   <h1>Modification de tâche</h1>
   <form (ngSubmit)="onSubmitForm()">
     <label for="titre-modif">Titre :</label>
-    <input type="text" name="titre-modif" placeholder="{{titreAncien}}" />
+    <input type="text" name="titre-modif" placeholder="{{titreAncien}}" [(ngModel)]="titre"/>
     <br />
     <label for="date-modif">Date :</label>
     <input type="date" name="date-modif" min="{{aujourdhui}}" [(ngModel)]="date" />
