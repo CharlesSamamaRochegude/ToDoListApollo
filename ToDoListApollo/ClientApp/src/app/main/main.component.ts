@@ -21,6 +21,7 @@ export class MainComponent {
   baseUrl: String;
   vrai: boolean = false;
   todocrea: Todoliste | undefined;
+  tachemodif: tache | undefined;
   active_desactiv_tache: number | undefined;
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
@@ -39,8 +40,16 @@ export class MainComponent {
   }
 
   // Lors de la pression du bouton d'ajout de tâches
-  onSelect(todo: Todoliste): void {
-    this.todocrea = todo;
+  onSelectCrea(todo: Todoliste): void {
+    if (this.todocrea != null) {
+      this.todocrea = undefined;
+    } else {
+      this.todocrea = todo;
+    }
+  }
+  // Lors de la pression du bouton d'ajout de tâches
+  onSelectModif(tache: tache): void {
+    this.tachemodif = tache;
   }
   //active/desactive la todoliste
   onSelectActiveTache(tache: tache): void {
@@ -73,5 +82,10 @@ export class MainComponent {
   }
   ngOnChanges(): void {
     this.todolistemodif = undefined;
+  }
+
+  // Refresh form
+  refreshForm(): void {
+    this.todocrea = undefined;
   }
 }
