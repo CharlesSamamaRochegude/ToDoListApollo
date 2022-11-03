@@ -49,6 +49,9 @@ export class CreateurTacheComponent implements OnInit {
   onSubmitForm(): void {
     this.http.post<any>(this.baseUrl + 'home/posttache/',
       { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
-      .subscribe();
+      .subscribe(
+        r => {
+          window.location.reload();
+        });
   }
 }

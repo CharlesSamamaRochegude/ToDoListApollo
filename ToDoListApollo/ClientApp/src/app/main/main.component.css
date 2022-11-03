@@ -18,9 +18,9 @@
 
 #entete {
   display: flex;
-  max-height: 10vh;
-  min-height: 95px;
-  background-color: ButtonFace;
+  max-height: 8vh;
+  min-height: 60px;
+  background-color: #f9fafa;
   text-align: center;
 }
 #titre
@@ -47,8 +47,6 @@
 #modiftodo{
     width:100%;
 }
-
-
 
 #surcorps {
   overflow-y: scroll;
@@ -109,4 +107,6 @@
       
   }
 
-
+#ajoutertache{
+    margin-left:5em;
+}

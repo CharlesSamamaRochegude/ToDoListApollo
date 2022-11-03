@@ -63,7 +63,11 @@ export class MainComponent implements OnChanges {
   onSelectModif(tache: tache): void {
     if(this.todoliste)
       tache.todoliste = this.todoliste;
-    this.tachemodif = tache;
+    if (this.tachemodif == tache) {
+      this.tachemodif = undefined;
+    } else {
+      this.tachemodif = tache;
+    }
   }
   //active/desactive la todoliste
   onSelectActiveTache(tache: tache): void {

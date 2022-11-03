@@ -5,9 +5,9 @@
     </div>
     <div id="liste">
       <ul *ngIf="liste" class="listetodoliste">
-        <li *ngFor="let todoliste of liste" >
-          <button (click)="onSelect(todoliste)" class="bouton_liste">
-            <div class="info">
+        <li *ngFor="let todoliste of liste;let i=index" >
+          <button (click)="onSelect(todoliste,i)" class="bouton_liste" id={{button_selected[i]}}>
+            <div class="info" id={{button_selected2[i]}}>
               <p class="titre">{{todoliste.titre_l}}</p>
             </div>
           </button>
