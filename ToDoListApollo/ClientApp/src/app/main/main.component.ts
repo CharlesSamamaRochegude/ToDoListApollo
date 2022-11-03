@@ -39,14 +39,14 @@ export class MainComponent implements OnChanges {
     this.http = HttpClient;
     this.baseUrl = baseUrl;
   }
-  nbOnChanges(): void {
+  ngOnChanges(): void {
     console.log('Modif !');
+    this.todolistemodif = undefined;
     if (this.taches)
       for (let i = 0; i < this.taches?.length; i++) {
         this.http.get<personne>(this.baseUrl + 'home/GetPersonneByid/' + this.taches[i].personneId).subscribe(result => {
-          //if (this.taches)
-          //  this.taches[i].ressource = result;
-          console.log(result);
+          if (this.taches)
+            this.taches[i].ressource = result;
         })
       }
   }
@@ -105,9 +105,6 @@ export class MainComponent implements OnChanges {
 
   onSelectModifToDo(todo:Todoliste): void {
     this.todolistemodif = todo;
-  }
-  ngOnChanges(): void {
-    this.todolistemodif = undefined;
   }
 
   // Refresh form
