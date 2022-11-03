@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, OnChanges } from '@angular/core';
 import { Todoliste } from '../list';
 import { personne } from '../personne';
 import { personneViewModel } from '../PersonneViewModel';
@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './modifier-liste.component.html',
   styleUrls: ['./modifier-liste.component.css']
 })
-export class ModifierListeComponent implements OnInit {
+export class ModifierListeComponent implements OnChanges {
   http: HttpClient;
   baseUrl: string;
   @Input() ToDoListeModif?: Todoliste;
@@ -21,27 +21,30 @@ export class ModifierListeComponent implements OnInit {
   id: number | undefined;
   personnes: personneViewModel[] | undefined;
   id_personnes: number | undefined;
-  selected_personnes: personneViewModel[]  | undefined =[]; // personne rattaché après modification.
+  selected_personnes: personneViewModel[] | undefined = []; // personne rattaché après modification.
+  involved_personnes: personneViewModel[] = [];
   aujourdhui: string | null = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   selected_personnes_mappes?: number[] ;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private datePipe: DatePipe) {
     this.http = http;
     this.baseUrl = baseUrl;
-    
   }
-
-  ngOnInit(): void {
-     this.selected_personnes  = this.ToDoListeModif?.personneViewModel;
-
+  ngOnChanges(): void {
+    this.selected_personnes  = this.ToDoListeModif?.personneViewModel;
     this.id = this.ToDoListeModif?.id_l;
     this.date = this.ToDoListeModif?.date_echeance_l?.substring(0, 10);
     this.titre = this.ToDoListeModif?.titre_l;
     this.description = this.ToDoListeModif?.description;
     this.getpersonnesviewmodel();
-    console.log(this.selected_personnes);
-    this.selected_personnes_mappes=this.selected_personnes?.map(p => p.id_p);
+    this.selected_personnes_mappes = this.selected_personnes?.map(p => p.id_p);
+    this.obtentionPersonnesImpliquees();
+  }
 
+  obtentionPersonnesImpliquees(): void {
+    this.http.get<personneViewModel[]>(this.baseUrl + 'home/getpersonnesimpliquees/' + this.id).subscribe(result => {
+      this.involved_personnes = result;
+    })
   }
 
   onSubmitForm(): void {
@@ -52,7 +55,6 @@ export class ModifierListeComponent implements OnInit {
           window.location.reload();
         }, error => console.error(error));
     this.ToDoListeModif = undefined;
-    
   }
   onSelect(personne: personneViewModel): void {
     
