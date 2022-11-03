@@ -1,22 +1,17 @@
 .bloc_flex
 {
     display: flex;
+    height: 100%;
 }
 
-#actions {
-  min-height: 10vh;
-  background-color: #eaeaea;
-  border-bottom: outset 1px;
-  border-right: outset 1px;
-}
 #gauche {
   flex: none;
-  min-width: 350px;
-  height: 95vh;
+  min-width: 20vh;
+  height: 100%;
 }
 #liste {
-  height: 85vh;
-  background-color: lightgray;
+  height: 100%;
+  background-color: ButtonFace;
   overflow-y: scroll;
 }
 #droite

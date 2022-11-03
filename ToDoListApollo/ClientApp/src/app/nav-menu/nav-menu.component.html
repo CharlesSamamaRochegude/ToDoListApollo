@@ -1,7 +1,7 @@
 <header>
   <nav
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom "
-       style="max-height: 5vh; background-color: #2C73B9; color: white"
+       style="max-height: 5vh; background-color: #2C73B9; color: white; min-height:40px;"
   >
     <div class="container">
       <img src="../../assets/Logo-blanc.png" alt="Alternate Text"  width="25px"/>
@@ -28,12 +28,7 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-white" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/counter']"
-              >Counter</a
-            >
+            <a class="nav-link text-white" [routerLink]="['/creation']">Créer une liste</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white" [routerLink]="['/fetch-data']"
