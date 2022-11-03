@@ -53,7 +53,7 @@ export class ModifierTacheComponent implements OnChanges {
       this.id_p = this.Tache.personneId;
     }
 
-    console.log(this.ressource);
+    console.log('Id select ' + this.ressource);
   }
 
   // Obtention des personnes que l'on peut assigner à la tâche

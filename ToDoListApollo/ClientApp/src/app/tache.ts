@@ -1,4 +1,5 @@
-import { Todoliste } from './list'
+import { Todoliste } from './list';
+import { personne } from './personne';
 
 
 export interface tache {
@@ -9,4 +10,5 @@ export interface tache {
   todoListId: number;
   personneId: number;
   todoliste: Todoliste;
+  ressource: personne;
 }
