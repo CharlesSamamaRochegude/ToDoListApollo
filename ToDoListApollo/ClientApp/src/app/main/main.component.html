@@ -62,7 +62,7 @@
                 <input *ngIf="todoliste.active_l==1" type="image" src="../../assets/suppresion.png" alt="Logo-edit" width="33" height="33" (click)="onSelectSupprimerTache(tache)" />
               </div>
               <div class="ressourceTaches">
-                <span title="{{tache.ressource.prenom}} {{tache.ressource.nom}}">
+                <span *ngIf="tache.ressource" title="{{tache.ressource.prenom}} {{tache.ressource.nom}}">
                   {{tache.ressource.prenom | slice : 0 : 1}}{{tache.ressource.nom | slice : 0 : 1}}
                 </span>
               </div>

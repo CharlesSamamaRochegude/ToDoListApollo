@@ -15,12 +15,12 @@
         <div id="scroll">
           <div *ngFor="let personne of personnes">
             <div *ngIf="selected_personnes_mappes && selected_personnes_mappes.includes(personne.id_p)">
-              <input type="checkbox" id="horns" name="horns" (click)="onSelect(personne)" checked>
-              <label for="horns">{{personne.nom}} {{personne.prenom}}</label>
+              <input type="checkbox" class="horns" name="check{{personne.id_p}}" (click)="onSelect(personne)" checked>
+              <label for="check{{personne.id_p}}">{{personne.nom}} {{personne.prenom}}</label>
             </div>
             <div *ngIf="selected_personnes_mappes && !selected_personnes_mappes.includes(personne.id_p)">
-              <input type="checkbox" id="horns" name="horns" (click)="onSelect(personne)">
-              <label for="horns">{{personne.nom}} {{personne.prenom}}</label>
+              <input type="checkbox" class="horns" name="check{{personne.id_p}}" (click)="onSelect(personne)">
+              <label for="check{{personne.id_p}}">{{personne.nom}} {{personne.prenom}}</label>
             </div>
           </div>
         </div>

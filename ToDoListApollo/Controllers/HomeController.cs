@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
@@ -273,6 +274,26 @@ namespace ToDoListApollo.Controllers
             return var;
         }
 
+        [HttpGet("getpersonnesimpliquees/{id}")]
+        public HashSet<PersonneViewModel> GetPersonnesImpliquees(int id)
+        {
+            IEnumerable<Tache> listeTache = GetTaches(id);
+            List<int> id_personnes = new List<int>();
+            HashSet<Personne> listePersonne = new HashSet<Personne>();
+            foreach (Tache tache in listeTache)
+            {
+                id_personnes.Add(tache.PersonneId);
+            }
+            foreach (var item in id_personnes)
+            {
+                listePersonne.Add(GetPersonneById(item));
+            }
+            
+
+            //var bl = _context.Personne.Include(t => t.Tache).Include(t => t.ToDoListes).Distinct().ToList();
+            return PersonneViewModel.Transform(listePersonne);
+        }
+
         //Affichage de l'ensemble des ToDoListes en asynchrone
         [HttpGet]
         [Route("listasync")]
@@ -351,6 +372,5 @@ namespace ToDoListApollo.Controllers
             var result = _context.Personne.Find(id);
             return result;
         }
-
     }
 }

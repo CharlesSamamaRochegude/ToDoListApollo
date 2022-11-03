@@ -57,6 +57,5 @@ export class CreateurListeComponent implements OnInit {
     console.log(this.titre);
     console.log(this.date);
     this.router.navigateByUrl('/');
-    window.location.reload();
   }
 }
