@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 // Import de nos propres fichiers
@@ -19,6 +19,7 @@ export class ListeComponent implements OnInit {
   baseUrl: String;
   active_desactiv_todo: number | undefined;
 
+  button_selected: boolean = false;
   listeSelectionnee?: Todoliste;
   tachesListeSelectionnee: tache[] = [];
 
@@ -37,6 +38,7 @@ export class ListeComponent implements OnInit {
   }
   // Lors du clique d'une todoliste, on affiche ses informations
   onSelect(todoliste: Todoliste): void {
+    this.button_selected = true;
     this.listeSelectionnee = todoliste;
     this.listeService.gettache(todoliste.id_l).subscribe(result => {
       this.tachesListeSelectionnee = result;

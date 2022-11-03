@@ -1,15 +1,15 @@
 <div class="bloc_flex">
   <div id="gauche">
+    <div id="separation">
 
+    </div>
     <div id="liste">
       <ul *ngIf="liste" class="listetodoliste">
-        <li *ngFor="let todoliste of liste">
+        <li *ngFor="let todoliste of liste" >
           <button (click)="onSelect(todoliste)" class="bouton_liste">
             <div class="info">
-              <h4 class="titre">{{todoliste.titre_l}}</h4>
-              <p class="desc">{{todoliste.description | slice:0:100}}...</p>
+              <p class="titre">{{todoliste.titre_l}}</p>
             </div>
-            <div class="utili">{{todoliste.id_l}}</div>
           </button>
         </li>
       </ul>

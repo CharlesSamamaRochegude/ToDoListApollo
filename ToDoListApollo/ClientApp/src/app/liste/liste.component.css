@@ -2,12 +2,19 @@
 {
     display: flex;
     height: 100%;
+
+}
+
+#separation {
+  margin-bottom: 95px;
+  background-color: lightgray;
 }
 
 #gauche {
   flex: none;
-  min-width: 20vh;
+  min-width: 30vh;
   height: 100%;
+  background-color: ButtonFace;
 }
 #liste {
   height: 100%;
@@ -30,9 +37,14 @@ ul
     display: flex;
     border: none;
 }
-.bouton_liste:hover{
+li[aria-selected]{
     background-color: lightgray;
+    font-weight:500;
 }
+  .bouton_liste:hover {
+    background-color: lightgray;
+    font-weight: 500;
+  }
 .listetodoliste {
   max-height: 85vh;
 }
@@ -41,8 +53,8 @@ ul
     flex: 1.5;
 }
 .titre{
-    text-align: left;
-    text-decoration: underline;
+    text-align: center;
+    
 }
 .desc {
     max-width: 280px;
