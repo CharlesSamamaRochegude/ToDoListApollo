@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ListeService } from '../liste.service';
 import { Todoliste } from '../list';
 import { tache } from '../tache';
+import { personne } from '../personne';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +15,7 @@ import { tache } from '../tache';
   styleUrls: ['./main.component.css']
 })
 
-export class MainComponent {
+export class MainComponent implements OnChanges {
   @Input() todoliste?: Todoliste;
   @Input() taches?: tache[];
   http: HttpClient;
@@ -38,6 +39,17 @@ export class MainComponent {
     this.http = HttpClient;
     this.baseUrl = baseUrl;
   }
+  nbOnChanges(): void {
+    console.log('Modif !');
+    if (this.taches)
+      for (let i = 0; i < this.taches?.length; i++) {
+        this.http.get<personne>(this.baseUrl + 'home/GetPersonneByid/' + this.taches[i].personneId).subscribe(result => {
+          //if (this.taches)
+          //  this.taches[i].ressource = result;
+          console.log(result);
+        })
+      }
+  }
 
   // Lors de la pression du bouton d'ajout de tâches
   onSelectCrea(todo: Todoliste): void {
@@ -49,6 +61,8 @@ export class MainComponent {
   }
   // Lors de la pression du bouton d'ajout de tâches
   onSelectModif(tache: tache): void {
+    if(this.todoliste)
+      tache.todoliste = this.todoliste;
     this.tachemodif = tache;
   }
   //active/desactive la todoliste

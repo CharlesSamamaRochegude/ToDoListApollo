@@ -19,9 +19,8 @@
 #entete {
   display: flex;
   max-height: 10vh;
-  min-height: 10vh;
-  background-color: lightgrey;
-  border-bottom: outset 1px;
+  min-height: 95px;
+  background-color: ButtonFace;
   text-align: center;
 }
 #titre
@@ -51,6 +50,14 @@
 
 
 
+#surcorps {
+  overflow-y: scroll;
+  height: 85vh;
+  border-left: outset 2px;
+  border-top: outset 2px;
+  border-color: #E0E0E0;
+  margin-left: 0.5px;
+}
 #corps {
   display: flex;
   padding: 20px;

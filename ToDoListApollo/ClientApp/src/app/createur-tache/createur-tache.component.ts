@@ -38,9 +38,7 @@ export class CreateurTacheComponent implements OnInit {
 
   // Obtention des personnes que l'on peut assigner à la tâche
   getpersonnes(): void {
-    this.http.get<personne[]>(this.baseUrl + 'home/listpersonne').subscribe(result => {
-      this.personnes = result;
-    }, error => console.error(error));
+    this.personnes = this.ToDoListe?.personneViewModel;
   }
   // Sélection de la personne précise désignée par l'utilisateur
   onSelect(id: number | undefined): void {

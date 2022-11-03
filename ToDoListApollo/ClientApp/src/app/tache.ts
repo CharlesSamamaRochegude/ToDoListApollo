@@ -1,4 +1,5 @@
-import { personne } from "./personne";
+import { Todoliste } from './list';
+import { personne } from './personne';
 
 
 export interface tache {
@@ -8,5 +9,6 @@ export interface tache {
   date_echeance_l: string | null;
   todoListId: number;
   personneId: number;
-
+  todoliste: Todoliste;
+  ressource: personne;
 }
