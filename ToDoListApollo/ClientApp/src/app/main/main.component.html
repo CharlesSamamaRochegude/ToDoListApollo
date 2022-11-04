@@ -73,7 +73,7 @@
     </div>
   </div>
   <button (click)="onSelectCrea(todoliste)"> Ajouter</button>
-  <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListe]="todocrea" *ngIf="todocrea"></app-createur-tache>
+  <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListe]="todocrea" [ListeTaches]="taches" *ngIf="todocrea"></app-createur-tache>
   <app-modifier-tache [Tache]="tachemodif"></app-modifier-tache>
 </div>
 
