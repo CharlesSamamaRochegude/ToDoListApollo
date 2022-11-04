@@ -1,14 +1,14 @@
 
 <div id="entete">
   <div id="titre" *ngIf="todoliste && !todolistemodif">
-    <h2 >{{todoliste.titre_l}}</h2>
+    <h5 >{{todoliste.titre_l}}</h5>
   </div>
   <div id="date" *ngIf="todoliste && !todolistemodif">
-    <h4 >
+    <p >
       {{todoliste.date_echeance_l | date: 'EEEE'}}<br />
       {{todoliste.date_echeance_l | date: 'dd'}}<br />
       {{todoliste.date_echeance_l | date: 'MMMM'}}
-    </h4>
+    </p>
   </div>
   <div id="description" *ngIf="todoliste && !todolistemodif">
     <p >{{todoliste.description}}</p>
@@ -30,12 +30,12 @@
   <div id="corps">
     <div id="corps_droit">
       <div id="Personnes_Rattaches">
-        <h3> Personnes Rattachés</h3>
+        <h5> Personnes Rattachés</h5>
         <div *ngFor="let personne of todoliste.personneViewModel"> {{personne.nom}} {{personne.prenom}}</div>
       </div>
     </div>
     <div id="corps-gauche">
-      <h3>Listes des différentes taches : </h3>
+      <h5>Listes des différentes taches : </h5>
 
       <div id="listeTaches">
         <ul>
@@ -53,11 +53,11 @@
                 </div>
               </div>
               <div class="boutonsTaches">
-                <mat-slide-toggle *ngIf="todoliste.active_l==0" disabled  ></mat-slide-toggle>
+                <mat-slide-toggle *ngIf="todoliste.active_l==0" disabled></mat-slide-toggle>
                 <mat-slide-toggle *ngIf="todoliste.active_l==1" (change)="onSelectActiveTache(tache)" [checked]="tache.active_l==1 "></mat-slide-toggle>
                 <button (click)='onSelectModif(tache)'>Modif</button>
               </div>
-              <div>
+              <div class="SupprimerTache">
                 <input id="supprimer_desactiver" *ngIf="todoliste.active_l==0" disabled type="image" src="../../assets/suppresion_disabled.png" alt="Logo-edit" width="33" height="33" (click)="onSelectSupprimerTache(tache)" />
                 <input *ngIf="todoliste.active_l==1" type="image" src="../../assets/suppresion.png" alt="Logo-edit" width="33" height="33" (click)="onSelectSupprimerTache(tache)" />
               </div>
@@ -72,7 +72,7 @@
       </div>
     </div>
   </div>
-  <button (click)="onSelectCrea(todoliste)"> Ajouter</button>
+  <input type="image" src="../../assets/Ajouter.png" alt="Logo-edit" width="33" height="33" (click)="onSelectCrea(todoliste)" id="ajoutertache" />
   <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListe]="todocrea" [ListeTaches]="taches" *ngIf="todocrea"></app-createur-tache>
   <app-modifier-tache [Tache]="tachemodif"></app-modifier-tache>
 </div>

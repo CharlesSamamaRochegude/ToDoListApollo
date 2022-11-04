@@ -75,6 +75,8 @@ export class ModifierTacheComponent implements OnChanges {
         Active_l: 1,
         TodoListId: 0,
         PersonneId: this.id_p
-      }).subscribe();
+      }).subscribe(r => {
+        window.location.reload();
+      });
   }
 }
