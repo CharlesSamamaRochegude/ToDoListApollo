@@ -14,12 +14,15 @@
 
 #personnes {
   flex: 2;
- 
+  display: flex;
 }
-
+#personnes label{
+    flex: 1;
+}
 #scroll {
   overflow-y: scroll;
   max-height: 80px;
+  flex: 4;
 }
 button{
     max-height:40px;
