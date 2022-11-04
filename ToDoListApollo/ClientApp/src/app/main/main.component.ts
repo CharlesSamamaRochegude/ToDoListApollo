@@ -17,7 +17,7 @@ import { personne } from '../personne';
 
 export class MainComponent implements OnChanges {
   @Input() todoliste?: Todoliste;
-  @Input() taches?: tache[];
+  @Input() taches: tache[];
   http: HttpClient;
   baseUrl: String;
   vrai: boolean = false;
@@ -27,10 +27,10 @@ export class MainComponent implements OnChanges {
   active_desactiv_todo: number | undefined;
   liste: Todoliste | undefined;
   todolistemodif: Todoliste | undefined;
-  
+
 
   constructor(
-              private ListeService: ListeService,
+    private ListeService: ListeService,
     private location: Location,
     private datePipe: DatePipe,
     private HttpClient: HttpClient,
@@ -38,17 +38,19 @@ export class MainComponent implements OnChanges {
   ) {
     this.http = HttpClient;
     this.baseUrl = baseUrl;
+    this.taches = [];
   }
   ngOnChanges(): void {
-    console.log('Modif !');
     this.todolistemodif = undefined;
-    if (this.taches)
-      for (let i = 0; i < this.taches?.length; i++) {
-        this.http.get<personne>(this.baseUrl + 'home/GetPersonneByid/' + this.taches[i].personneId).subscribe(result => {
-          if (this.taches)
+    if (this.taches.length!=0 && this.todoliste) {
+      if (this.todoliste?.id_l == this.taches[0].todoListId) {
+        for (let i = 0; i < this.taches?.length; i++) {
+          this.http.get<personne>(this.baseUrl + 'home/GetPersonneByid/' + this.taches[i].personneId).subscribe(result => {
             this.taches[i].ressource = result;
-        })
+          })
+        }
       }
+    }
   }
 
   // Lors de la pression du bouton d'ajout de tâches
@@ -61,21 +63,25 @@ export class MainComponent implements OnChanges {
   }
   // Lors de la pression du bouton d'ajout de tâches
   onSelectModif(tache: tache): void {
-    if(this.todoliste)
+    if (this.todoliste)
       tache.todoliste = this.todoliste;
-    this.tachemodif = tache;
+    if (this.tachemodif == tache) {
+      this.tachemodif = undefined;
+    } else {
+      this.tachemodif = tache;
+    }
   }
   //active/desactive la todoliste
   onSelectActiveTache(tache: tache): void {
     if (tache.active_l == 0) {
       this.active_desactiv_todo = tache.active_l + 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
-      
+
     }
     else {
       this.active_desactiv_todo = tache.active_l - 1;
       this.http.post<any>(this.baseUrl + 'home/postactivationtache/' + tache.id_t, this.active_desactiv_todo).subscribe();
-     
+
     }
   }
   //active/desactive la todoliste
@@ -103,7 +109,7 @@ export class MainComponent implements OnChanges {
     window.location.reload();
   }
 
-  onSelectModifToDo(todo:Todoliste): void {
+  onSelectModifToDo(todo: Todoliste): void {
     this.todolistemodif = todo;
   }
 

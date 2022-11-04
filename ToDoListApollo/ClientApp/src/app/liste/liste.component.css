@@ -2,16 +2,23 @@
 {
     display: flex;
     height: 100%;
+
+}
+
+#separation {
+  margin-bottom: 95px;
+  background-color: #f9fafa;
 }
 
 #gauche {
   flex: none;
-  min-width: 20vh;
+  min-width: 30vh;
   height: 100%;
+  background-color: #f9fafa;
 }
 #liste {
   height: 100%;
-  background-color: ButtonFace;
+  background-color: #f9fafa;
   overflow-y: scroll;
 }
 #droite
@@ -30,23 +37,38 @@ ul
     display: flex;
     border: none;
 }
-.bouton_liste:hover{
-    background-color: lightgray;
+#true {
+  background-color: #C0C0C0;
+  font-weight: 500;
 }
+  .bouton_liste:hover {
+    background-color: lightgray;
+    font-weight: 500;
+  }
 .listetodoliste {
   max-height: 85vh;
+  background-color: #f9fafa;
 }
-
-.info{
-    flex: 1.5;
+.info {
+  flex: 1.5;
+  min-height: 3em;
+  background-color: #f9fafa;
+  margin-bottom:5px;
 }
+  #truee {
+    background-color: lightgray;
+  }
 .titre{
-    text-align: left;
-    text-decoration: underline;
+    text-align: center;
+    
 }
 .desc {
     max-width: 280px;
   text-align: left;
   word-wrap: break-word;
+}
+
+#button {
+    background-color: #f9fafa;
 }
 

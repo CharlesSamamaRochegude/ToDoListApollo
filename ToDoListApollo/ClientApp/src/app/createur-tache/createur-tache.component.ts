@@ -5,6 +5,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 // Import de nos propres fichiers
 import { Todoliste } from '../list';
 import { personne } from '../personne';
+import { tache } from '../tache';
 
 @Component({
   selector: 'app-createur-tache',
@@ -14,6 +15,7 @@ import { personne } from '../personne';
 export class CreateurTacheComponent implements OnInit {
   @Input() ToDoListeIDverif?: number;
   @Input() ToDoListe?: Todoliste;
+  @Input() ListeTaches?: tache[];
   http: HttpClient;
   baseUrl: string;
   personnes: personne[] | undefined;
@@ -21,15 +23,17 @@ export class CreateurTacheComponent implements OnInit {
   id: number | undefined;
   id_p: number | undefined;
 
-  titre?: string;
+  titre: string;
   date?: string | null;
   aujourdhui: string | null = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private datePipe: DatePipe) {
     this.http = http;
     this.baseUrl = baseUrl;
+    this.titre = "";
   }
   ngOnInit(): void {
+    this.titre = "";
     this.getpersonnes();
     if (this.ToDoListe) {
       this.date = this.ToDoListe.date_echeance_l?.slice(0, 10);
@@ -47,8 +51,20 @@ export class CreateurTacheComponent implements OnInit {
   }
   // Méthode d'envoie à la complétion du formulaire
   onSubmitForm(): void {
+
+    var nouvelleTache;
+
     this.http.post<any>(this.baseUrl + 'home/posttache/',
       { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
-      .subscribe();
+      .subscribe(idResult => {
+        console.log(idResult);
+        this.http.get<any>(this.baseUrl + 'home/gettachebyid/' + idResult).subscribe(result => {
+          console.log(result);
+          nouvelleTache = result
+          this.ListeTaches?.push(nouvelleTache);
+        });
+      });
+
+    this.ngOnInit();
   }
 }
