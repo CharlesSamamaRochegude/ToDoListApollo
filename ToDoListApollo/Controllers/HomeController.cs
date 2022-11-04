@@ -361,6 +361,7 @@ namespace ToDoListApollo.Controllers
             return result;
         }
 
+        [HttpGet("gettachebyid/{id}")]
         public Tache GetTacheById(int id)
         {
             var result = _context.Tache.Find(id);
