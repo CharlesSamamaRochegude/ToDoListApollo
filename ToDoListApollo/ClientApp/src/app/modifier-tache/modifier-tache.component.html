@@ -1,19 +1,21 @@
-<div *ngIf="Tache">
-  <h1>Modification de tâche</h1>
-  <form (ngSubmit)="onSubmitForm()">
-    <label for="titre-modif">Titre :</label>
-    <input type="text" name="titre-modif" placeholder="{{titreAncien}}" [(ngModel)]="titre"/>
-    <br />
-    <label for="date-modif">Date :</label>
-    <input type="date" name="date-modif" min="{{aujourdhui}}" [(ngModel)]="date" />
-    <br />
-    <label for="util-modif">Personne :</label>
-    <select [(ngModel)]="id_p" name="util-modif" id="selected_personnes" (ngModelChange)="onSelect(id_p)" [value]="ressource">
-      <option *ngFor="let personne of personnes" [ngValue]="personne.id_p" [selected]="personne.id_p == ressource">{{personne.nom}} {{personne.prenom}}</option>
-    </select>
-    <br />
-    <br />
+<div *ngIf="Tache" class="overlay">
+  <div class="popup">
+    <h1>Modification de tâche</h1>
+    <form (ngSubmit)="onSubmitForm()">
+      <label for="titre-modif">Titre :</label>
+      <input type="text" name="titre-modif" placeholder="{{titreAncien}}" [(ngModel)]="titre" />
+      <br />
+      <label for="date-modif">Date :</label>
+      <input type="date" name="date-modif" min="{{aujourdhui}}" [(ngModel)]="date" />
+      <br />
+      <label for="util-modif">Personne :</label>
+      <select [(ngModel)]="id_p" name="util-modif" id="selected_personnes" (ngModelChange)="onSelect(id_p)" [value]="ressource">
+        <option *ngFor="let personne of personnes" [ngValue]="personne.id_p" [selected]="personne.id_p == ressource">{{personne.nom}} {{personne.prenom}}</option>
+      </select>
+      <br />
+      <br />
 
-    <button type="submit">Enregistrer</button>
-  </form>
+      <button type="submit">Enregistrer</button>
+    </form>
+  </div>
 </div>
