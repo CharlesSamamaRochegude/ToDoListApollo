@@ -61,10 +61,11 @@
   padding: 20px;
   flex-direction: row-reverse;
 }
-#corps_gauche {
+div#corps-gauche {
+  width: 100%;
 }
   #listeTaches{
-    max-width: 100%;
+    width: 100%;
   }
     #listeTaches ul{
       list-style-type: none;
@@ -76,6 +77,7 @@
       margin-top: 10px;
       border-radius: 5px;
       min-width: 45vw;
+      width: 100%;
     }
       .boutonsTaches {
         width: 90px;
@@ -96,12 +98,14 @@
       .descriptionTaches {
         flex: 3;
       }
+      .ressourceTaches{
+          width: 20px;
+      }
 
 
 
 #corps_droit {
   margin-left: 15vw;
-
 }
   #Personnes_Rattaches {
       
