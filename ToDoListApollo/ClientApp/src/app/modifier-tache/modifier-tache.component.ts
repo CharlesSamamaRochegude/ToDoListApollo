@@ -58,9 +58,7 @@ export class ModifierTacheComponent implements OnChanges {
 
   // Obtention des personnes que l'on peut assigner à la tâche
   getPersonnes(): void {
-    //this.http.get<Todoliste[]>(this.baseUrl + 'home/gettodolistebyid/' + this.Tache?.todoListId).subscribe(result => {
-    //  this.personnes = result[0].personneViewModel;
-    //}, error => console.error(error));
+    if (this.Tache?.todoliste)
     this.personnes = this.Tache?.todoliste.personneViewModel;
   }
   // Sélection de la personne précise désignée par l'utilisateur
@@ -77,6 +75,8 @@ export class ModifierTacheComponent implements OnChanges {
         Active_l: 1,
         TodoListId: 0,
         PersonneId: this.id_p
-      }).subscribe();
+      }).subscribe(r => {
+        window.location.reload();
+      });
   }
 }

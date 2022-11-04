@@ -20,10 +20,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    overflow-x:hidden;
-    overflow-y:hidden;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: "Segoe","Segoe UI","Arial","sans-serif";
 }
 
 app-root{
