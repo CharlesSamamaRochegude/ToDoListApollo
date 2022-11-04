@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, OnChanges, ChangeDetectionStrategy, SimpleChanges, EventEmitter, Output } from '@angular/core';
 
 // Import de nos propres fichiers
 import { Todoliste } from '../list';
@@ -12,10 +12,10 @@ import { tache } from '../tache';
   templateUrl: './createur-tache.component.html',
   styleUrls: ['./createur-tache.component.css']
 })
-export class CreateurTacheComponent implements OnInit {
-  @Input() ToDoListeIDverif?: number;
+export class CreateurTacheComponent implements OnChanges {
   @Input() ToDoListe?: Todoliste;
-  @Input() ListeTaches?: tache[];
+  @Output() ToDoListeChange = new EventEmitter<Todoliste>();
+
   http: HttpClient;
   baseUrl: string;
   personnes: personne[] | undefined;
@@ -32,7 +32,11 @@ export class CreateurTacheComponent implements OnInit {
     this.baseUrl = baseUrl;
     this.titre = "";
   }
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.Init();
+  }
+
+  Init(): void {
     this.titre = "";
     this.getpersonnes();
     if (this.ToDoListe) {
@@ -47,7 +51,10 @@ export class CreateurTacheComponent implements OnInit {
   // Sélection de la personne précise désignée par l'utilisateur
   onSelect(id: number | undefined): void {
     this.id_p = id;
-    console.log(this.id_p);
+  }
+  Quit(): void {
+    this.Init();
+    this.ToDoListeChange.emit(undefined);
   }
   // Méthode d'envoie à la complétion du formulaire
   onSubmitForm(): void {
@@ -57,14 +64,13 @@ export class CreateurTacheComponent implements OnInit {
     this.http.post<any>(this.baseUrl + 'home/posttache/',
       { Titre_t: this.titre, Date_echeance_l: this.date, Active_l: 1, TodoListId: this.ToDoListe?.id_l, PersonneId: this.id_p })
       .subscribe(idResult => {
-        console.log(idResult);
         this.http.get<any>(this.baseUrl + 'home/gettachebyid/' + idResult).subscribe(result => {
-          console.log(result);
           nouvelleTache = result
-          this.ListeTaches?.push(nouvelleTache);
+          this.ToDoListe?.tache.push(nouvelleTache);
+          this.ToDoListeChange.emit(undefined);
         });
       });
 
-    this.ngOnInit();
+    this.Init();
   }
 }

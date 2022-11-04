@@ -42,7 +42,7 @@ export class MainComponent implements OnChanges {
   }
   ngOnChanges(): void {
     this.todolistemodif = undefined;
-    if (this.taches.length!=0 && this.todoliste) {
+    if (this.taches.length != 0 && this.todoliste) {
       if (this.todoliste?.id_l == this.taches[0].todoListId) {
         for (let i = 0; i < this.taches?.length; i++) {
           this.http.get<personne>(this.baseUrl + 'home/GetPersonneByid/' + this.taches[i].personneId).subscribe(result => {
@@ -55,11 +55,14 @@ export class MainComponent implements OnChanges {
 
   // Lors de la pression du bouton d'ajout de tâches
   onSelectCrea(todo: Todoliste): void {
-    if (this.todocrea != null) {
+    if (this.todocrea) {
       this.todocrea = undefined;
     } else {
-      this.todocrea = todo;
+
     }
+    this.todocrea = todo;
+    this.todocrea.tache = this.taches;
+
   }
   // Lors de la pression du bouton d'ajout de tâches
   onSelectModif(tache: tache): void {
@@ -100,13 +103,18 @@ export class MainComponent implements OnChanges {
     }
   }
   onSelectSupprimerToDo(todo: Todoliste): void {
-    this.http.post<any>(this.baseUrl + 'home/postdeltodo/' + todo.id_l, {}).subscribe();
-    window.location.reload();
+    if (window.confirm("Êtes-vous sûr(e) de vouloir supprimer la liste \"" + todo.titre_l +"\" ?")) {
+      this.http.post<any>(this.baseUrl + 'home/postdeltodo/' + todo.id_l, {}).subscribe();
+      window.location.reload();
+    }
   }
 
   onSelectSupprimerTache(todo: tache): void {
-    this.http.post<any>(this.baseUrl + 'home/postdeltache/' + todo.id_t, {}).subscribe();
-    window.location.reload();
+    if (window.confirm("Êtes-vous sûr(e) de vouloir supprimer cette tâche ?")){
+      this.http.post<any>(this.baseUrl + 'home/postdeltache/' + todo.id_t, {}).subscribe();
+      var index = this.taches.findIndex(e => todo == e);
+      this.taches.splice(index, 1);
+    };
   }
 
   onSelectModifToDo(todo: Todoliste): void {

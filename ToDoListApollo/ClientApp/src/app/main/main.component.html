@@ -59,7 +59,7 @@
               </div>
               <div class="SupprimerTache">
                 <input id="supprimer_desactiver" *ngIf="todoliste.active_l==0" disabled type="image" src="../../assets/suppresion_disabled.png" alt="Logo-edit" width="33" height="33" (click)="onSelectSupprimerTache(tache)" />
-                <input *ngIf="todoliste.active_l==1" type="image" src="../../assets/suppresion.png" alt="Logo-edit" width="33" height="33" (click)="onSelectSupprimerTache(tache)" />
+                <input *ngIf="todoliste.active_l==1" type="image" src="../../assets/suppresion.png" alt="Logo-edit" width="33" height="33"  (click)="onSelectSupprimerTache(tache)" />
               </div>
               <div class="ressourceTaches">
                 <span *ngIf="tache.ressource" title="{{tache.ressource.prenom}} {{tache.ressource.nom}}">
@@ -73,7 +73,7 @@
     </div>
   </div>
   <input type="image" src="../../assets/Ajouter.png" alt="Logo-edit" width="33" height="33" (click)="onSelectCrea(todoliste)" id="ajoutertache" />
-  <app-createur-tache [ToDoListeIDverif]="todoliste.id_l" [ToDoListe]="todocrea" [ListeTaches]="taches" *ngIf="todocrea"></app-createur-tache>
+  <app-createur-tache [(ToDoListe)]="todocrea"></app-createur-tache>
   <app-modifier-tache [Tache]="tachemodif"></app-modifier-tache>
 </div>
 
